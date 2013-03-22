@@ -8,6 +8,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 import com.release.anno.Action;
+import com.release.common.BaseType;
 import com.release.handler.AbstractBuilder;
 
 /**
@@ -17,6 +18,7 @@ import com.release.handler.AbstractBuilder;
  * @작성자 : 이남규
  * @프로그램설명 :
  */
+@Deprecated
 public class ReleaseProxy {
 
 	/**

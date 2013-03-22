@@ -1,9 +1,9 @@
 package com.release.handler;
 
+import static com.release.common.BaseType.*;
+
 import java.io.File;
 import java.util.List;
-
-import com.release.core.BaseType;
 
 /**
  * @FileName : Common.java
@@ -86,7 +86,7 @@ public class CommonBuilder {
 	 */
 	public String makeDuplDirectory(List<String> completeCopyFile, String fileName, String directory) {
 		int duplIdx = getDuplIdx(completeCopyFile, fileName);
-		String duplDirectoryPath = directory + BaseType.DUPL_DIRECTORY_PREFIX + duplIdx;
+		String duplDirectoryPath = directory + DUPL_DIRECTORY_PREFIX + duplIdx;
 
 		// 중복 파일 저장을 위한 디렉토리 생성
 		new File(duplDirectoryPath).mkdirs();
@@ -122,7 +122,6 @@ public class CommonBuilder {
 	 */
 	public String makePath(String value, String releaseNum) {
 		StringBuilder path = new StringBuilder();
-		path.append(BaseType.DIRECTORY_DEPTH);
 		path.append(releaseNum);
 		path.append(File.separator);
 		path.append(value);

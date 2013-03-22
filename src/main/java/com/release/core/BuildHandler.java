@@ -1,8 +1,6 @@
 package com.release.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.release.common.ReleaseType;
 import com.release.handler.AbstractBuilder;
 import com.release.vo.DataVO;
 
@@ -20,11 +18,13 @@ public class BuildHandler {
 
 	/**
 	 * @param command
+	 * @param releaseNum
 	 */
-	public BuildHandler(String command, String packageNum) {
+	public BuildHandler(String command, String releaseNum, String tarFileName) {
 		data = new DataVO();
-		data.setCommand(command);
-		data.setReleaseNum(packageNum);
+		data.setType(ReleaseType.valueOf(command));
+		data.setReleaseNum(releaseNum);
+		data.setTarFileName(tarFileName);
 	}
 
 	/**
@@ -32,28 +32,9 @@ public class BuildHandler {
 	 * execute
 	 *
 	 * <pre>
-	 * @throws Exception
 	 */
-	public void execute() throws Exception {
-		AbstractBuilder abstractBuilder = ReleaseProxy.createInstance(data.getCommand());
+	public void execute() {
+		AbstractBuilder abstractBuilder = ReleaseFactory.createInstance(data.getType());
 		abstractBuilder.build(data);
 	}
-
-	/**
-	 * <pre>
-	 * getFileName
-	 *
-	 * <pre>
-	 * @param fileList
-	 * @return
-	 */
-	@Deprecated
-	public List<String> getFileName(List<String> fileList) {
-		List<String> fileNameList = new ArrayList<String>();
-		for (String str : fileList) {
-			fileNameList.add(str.substring(str.lastIndexOf("/") + 1));
-		}
-		return fileNameList;
-	}
-
 }

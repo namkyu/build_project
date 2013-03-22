@@ -1,5 +1,7 @@
 package com.release.util;
 
+import static com.release.common.BaseType.*;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,11 +14,6 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.release.core.BaseType;
-
-import org.apache.commons.io.FilenameUtils;
-
-// TODO: Auto-generated Javadoc
 /**
  * @FileName : FileUtil.java
  * @Project : TEST_PROJECT
@@ -27,20 +24,22 @@ import org.apache.commons.io.FilenameUtils;
 public class FileUtil {
 
     /**
-     * Nio copy.
+     * <pre>
+     * nioCopy
      *
-     * @param srcPath the src path
-     * @param destPath the dest path
-     *
-     * @throws IOException Signals that an I/O exception has occurred.
+     * <pre>
+     * @param srcPath
+     * @param destPath
      */
-    public static void nioCopy(String srcPath, String destPath) throws IOException {
-        FileChannel inChannel = new FileInputStream(new File(srcPath)).getChannel();
-        FileChannel outChannel = new FileOutputStream(new File(destPath)).getChannel();
+    public static void nioCopy(String srcPath, String destPath) {
+        FileChannel inChannel = null;
+        FileChannel outChannel = null;
         try {
+        	inChannel = new FileInputStream(new File(srcPath)).getChannel();
+        	outChannel = new FileOutputStream(new File(destPath)).getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
             FileUtil.close(inChannel);
             FileUtil.close(outChannel);
@@ -48,93 +47,25 @@ public class FileUtil {
 
     }
 
-    /**
-     * 특정 디렉토리로 파일 이동, 파일명은 그대로, 이동후 원본은 삭제,.
-     *
-     * @param srcFilePath 경로와 파일명을 포함한 소스파일명
-     * @param destFilePath 경로와 파일명을 포함한 대상 파일명
-     * @return true, if nio move
-     */
-    public static boolean NioMove(String srcFilePath, String destFilePath) {
-        File srcFile = new File(srcFilePath);
-        if (srcFile.isFile() == false) {
-            return false;
-        }
-        try {
-            FileUtil.nioCopy(srcFilePath, destFilePath);
-            srcFile.delete();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Close.
-     *
-     * @param channel the channel
-     */
-    public static void close(FileChannel channel) {
-
-        try {
-            if (channel != null) {
-                channel.close();
-            }
-        } catch (IOException e) {
-        }
-    }
-
-    /**
-     * Media을 저장하기 위한 폴더를 생성한다.
-     *
-     * @param root the root
-     * @param mid the mid
-     * @return 새로 생성되는 경로, root 경로는 제외
-     */
-    public static String createDatePath(String root, String mid) {
-        StringBuilder sb = new StringBuilder();
-        String newPath = null;
-        try {
-            sb.append(DateTimeUtil.getNowSimpleDateFormat("yyyy/MM/dd"));
-            sb.append('/').append(mid);
-            newPath = FilenameUtils.separatorsToSystem(sb.toString());
-
-            sb.setLength(0);
-            sb.append(root).append('/').append(newPath);
-            String savePath = FilenameUtils.separatorsToSystem(sb.toString());
-
-            new File(savePath).mkdirs();
-        } catch (Exception e) {
-            return null;
-        }
-        return newPath;
-    }
-
-    /**
-     * Separators to system.
-     *
-     * @param path the path
-     *
-     * @return the string
-     */
-    public static String separatorsToSystem(String path) {
-        return org.apache.commons.io.FilenameUtils.separatorsToSystem(path);
-    }
-
-    /**
-     * Separators to url.
-     *
-     * @param path the path
-     *
-     * @return the string
-     */
-    public static String separatorsToUrl(String path) {
-        return org.apache.commons.io.FilenameUtils.separatorsToUnix(path);
-    }
+	/**
+	 * <pre>
+	 * close
+	 *
+	 * <pre>
+	 * @param channel
+	 */
+	public static void close(FileChannel channel) {
+		try {
+			if (channel != null) {
+				channel.close();
+			}
+		} catch (IOException e) {
+		}
+	}
 
     /**
      * <pre>
-     * readTxtFile
+     * readFile
      *
      * <pre>
      * @param readFile
@@ -168,17 +99,16 @@ public class FileUtil {
      * <pre>
      * @param msg
      * @param path
-     * @throws Exception
      */
-    public static void writeMsg(String msg, String path) throws Exception {
+    public static void writeMsg(String msg, String path) {
 		BufferedWriter bf = null;
 		try {
-			bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path), true), BaseType.CHARACTER_SET));
+			bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path), true), CHARACTER_SET));
 			bf.write(msg);
 			bf.newLine();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw ex;
+			throw new RuntimeException(ex);
 		} finally {
 			if (bf != null) {
 				try {
@@ -188,6 +118,3 @@ public class FileUtil {
 		}
 	}
 }
-
-
-

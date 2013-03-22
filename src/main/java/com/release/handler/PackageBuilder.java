@@ -1,11 +1,11 @@
 package com.release.handler;
 
+import static com.release.common.BaseType.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.release.anno.Action;
-import com.release.core.BaseType;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
@@ -17,18 +17,22 @@ import com.release.vo.DataVO;
  * @작성자 : 이남규
  * @프로그램설명 : 패키징
  */
-@Action("package")
 public class PackageBuilder extends AbstractBuilder {
 
 	/** data */
 	private DataVO data;
 
 	/**
+	 * <pre>
+	 * preHandle
 	 * 적용 파일 리스트 추출
 	 * 적용 파일 존재 유무 확인
+	 * <pre>
+	 * @param dataVO
+	 * @return
 	 */
 	@Override
-	protected boolean preHandle(DataVO dataVO) throws Exception {
+	protected boolean preHandle(DataVO dataVO) {
 		System.out.println("#########################################################");
 		System.out.println("## PACKAGE");
 		System.out.println("#########################################################");
@@ -36,7 +40,7 @@ public class PackageBuilder extends AbstractBuilder {
 		this.data = dataVO;
 
 		// 적용 파일 리스트 추출 후 set
-		String packageFile = makePath(BaseType.PACKAGE_FILE_NAME, data.getReleaseNum());
+		String packageFile = makePath(PACKAGE_FILE_NAME, data.getReleaseNum());
 		data.setPackageFilePathList(FileUtil.readFile(packageFile));
 
 		// 적용 파일 존재 유무 확인
@@ -48,12 +52,15 @@ public class PackageBuilder extends AbstractBuilder {
 	}
 
 	/**
+	 * <pre>
 	 * 패키징 진행
+	 *
+	 * <pre>
 	 */
 	@Override
-	protected void process() throws Exception {
+	protected void process() {
 		// 적용 소스를 저장할 디렉토리 생성
-		String packageDir = makePath(BaseType.SOURCE_DIRECTORY, data.getReleaseNum());
+		String packageDir = makePath(SOURCE_DIRECTORY, data.getReleaseNum());
 		makeDir(packageDir);
 
 		// 원본 적용 파일 리스트
@@ -74,26 +81,35 @@ public class PackageBuilder extends AbstractBuilder {
 			System.out.println("##process##(package file copy) packageFilePath=" + packageFilePath + ", destinationFilePath=" + destinationFilePath);
 
 			fileNameList.add(packageFileName);
-			csvInstallFilePathList.add(packageFilePath + BaseType.SEPARATOR + destinationFilePath);
+			csvInstallFilePathList.add(packageFilePath + SEPARATOR + destinationFilePath);
 		}
 
 		data.setCsvInstallFilePathList(csvInstallFilePathList);
 	}
 
 	/**
+	 * <pre>
+	 * postHandle
 	 * install 파일 생성
+	 * <pre>
 	 */
 	@Override
-	protected void postHandle() throws Exception {
-		new File(BaseType.INSTALL_FILE_NAME).delete();
+	protected void postHandle() {
+		new File(INSTALL_FILE_NAME).delete();
 
 		// csv 형식으로 된 install.txt 파일 생성
 		for (String installPath : data.getCsvInstallFilePathList()) {
-			String installFile = makePath(BaseType.INSTALL_FILE_NAME, data.getReleaseNum());
+			String installFile = makePath(INSTALL_FILE_NAME, data.getReleaseNum());
 			FileUtil.writeMsg(installPath, installFile);
 		}
 	}
 
+	/**
+	 * <pre>
+	 * error
+	 *
+	 * <pre>
+	 */
 	@Override
 	protected void error() {
 
@@ -111,7 +127,7 @@ public class PackageBuilder extends AbstractBuilder {
 		for (String filePath : fileList) {
 			boolean check = new File(filePath).isFile();
 			if (check == false) {
-				System.out.println("##existFile failed## check=" + check + ", filePath=" + filePath);
+				System.out.println("##existFile## (file not found) check=" + check + ", filePath=" + filePath);
 				return false;
 			}
 		}

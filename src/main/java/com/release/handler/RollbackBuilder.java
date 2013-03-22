@@ -1,10 +1,9 @@
 package com.release.handler;
 
-import java.io.IOException;
+import static com.release.common.BaseType.*;
+
 import java.util.List;
 
-import com.release.anno.Action;
-import com.release.core.BaseType;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
@@ -16,12 +15,19 @@ import com.release.vo.DataVO;
  * @작성자 : 이남규
  * @프로그램설명 :
  */
-@Action("rollback")
 public class RollbackBuilder extends AbstractBuilder {
 
 	/** data */
 	private DataVO data;
 
+	/**
+	 * <pre>
+	 * preHandle
+	 *
+	 * <pre>
+	 * @param dataVO
+	 * @return
+	 */
 	@Override
 	protected boolean preHandle(DataVO dataVO) {
 		System.out.println("#########################################################");
@@ -33,16 +39,19 @@ public class RollbackBuilder extends AbstractBuilder {
 	}
 
 	/**
+	 * <pre>
+	 * process
 	 * 롤백
+	 * <pre>
 	 */
 	@Override
-	protected void process() throws IOException {
-		String rollbackFile = makePath(BaseType.ROLLBACK_FILE_NAME, data.getReleaseNum());
+	protected void process() {
+		String rollbackFile = makePath(ROLLBACK_FILE_NAME, data.getReleaseNum());
 		List<String> csvRollbackFilePathList = FileUtil.readFile(rollbackFile);
 
 		for (String csvRollbackFilePath : csvRollbackFilePathList) {
-			String rollbaFilePath = csvRollbackFilePath.split(BaseType.SEPARATOR)[0];
-			String backupFilePath = csvRollbackFilePath.split(BaseType.SEPARATOR)[1];
+			String rollbaFilePath = csvRollbackFilePath.split(SEPARATOR)[0];
+			String backupFilePath = csvRollbackFilePath.split(SEPARATOR)[1];
 
 			String destDir = getDirPath(rollbaFilePath);
 			makeDir(destDir);
@@ -52,11 +61,23 @@ public class RollbackBuilder extends AbstractBuilder {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * postHandle
+	 *
+	 * <pre>
+	 */
 	@Override
 	protected void postHandle() {
 
 	}
 
+	/**
+	 * <pre>
+	 * error
+	 *
+	 * <pre>
+	 */
 	@Override
 	protected void error() {
 

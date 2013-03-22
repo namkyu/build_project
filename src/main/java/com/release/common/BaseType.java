@@ -1,4 +1,4 @@
-package com.release.core;
+package com.release.common;
 
 
 /**
@@ -17,21 +17,12 @@ public class BaseType {
 	/** 인코딩 */
 	public static String CHARACTER_SET = "UTF-8";
 
-	/** 패키징 */
-	public static String PACKAGE = "package";
-	/** 인스톨 */
-	public static String INSTALL = "install";
-	/** 롤백 */
-	public static String ROLLBACK = "rollback";
-
 	/** 적용 소스 디렉토리 */
 	public static String SOURCE_DIRECTORY = "source";
 	/** 백업 소스 디렉토리 */
 	public static String BACKUP_DIRECTORY = "backup";
 	/** 중복 파일 디렉토리 prefix */
 	public static String DUPL_DIRECTORY_PREFIX = "/dupl_";
-	/** 패키지 디렉토리 생성 depth */
-	public static String DIRECTORY_DEPTH = "../";
 
 	/** 패키징 리스트 파일 */
 	public static String PACKAGE_FILE_NAME = "package.txt";
@@ -39,6 +30,4 @@ public class BaseType {
 	public static String INSTALL_FILE_NAME = "install.txt";
 	/** 롤백 리스트 파일 */
 	public static String ROLLBACK_FILE_NAME = "rollback.txt";
-
-
 }

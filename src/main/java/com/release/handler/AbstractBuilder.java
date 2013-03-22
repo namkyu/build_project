@@ -12,9 +12,6 @@ import com.release.vo.DataVO;
  */
 public abstract class AbstractBuilder extends CommonBuilder {
 
-	public AbstractBuilder() {
-	}
-
 	/**
 	 * <pre>
 	 * build
@@ -23,21 +20,17 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 * @param data
 	 */
 	public void build(DataVO data) {
-		try {
-			boolean isSuccess = preHandle(data); // before process
-
-			if (isSuccess == false) {
-				System.out.println("##build failed## preHandle isSucces=" + isSuccess + ", data=" + data);
-				return;
-			}
-
-			process(); // process
-			postHandle(); // after process
-
-		} catch (Exception ex) {
-			System.out.println("##build exception## data=" + data);
-			ex.printStackTrace();
+		// before process
+		boolean isSuccess = preHandle(data);
+		if (isSuccess == false) {
+			System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + data.getType() + ", releaseNum=" + data.getReleaseNum());
+			return;
 		}
+
+		// process
+		process();
+		// after process
+		postHandle();
 	}
 
 	/**
@@ -47,27 +40,24 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 * <pre>
 	 * @param data
 	 * @return
-	 * @throws Exception
 	 */
-	protected abstract boolean preHandle(DataVO data) throws Exception;
+	protected abstract boolean preHandle(DataVO data);
 
 	/**
 	 * <pre>
 	 * process
 	 * 처리 진행
 	 * <pre>
-	 * @throws Exception
 	 */
-	protected abstract void process() throws Exception;
+	protected abstract void process();
 
 	/**
 	 * <pre>
 	 * postHandle
 	 * 후 처리
 	 * <pre>
-	 * @throws Exception
 	 */
-	protected abstract void postHandle() throws Exception;
+	protected abstract void postHandle();
 
 	/**
 	 * <pre>

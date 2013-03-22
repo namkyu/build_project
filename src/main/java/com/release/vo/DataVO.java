@@ -2,6 +2,8 @@ package com.release.vo;
 
 import java.util.List;
 
+import com.release.common.ReleaseType;
+
 /**
  * @FileName : DataVO.java
  * @Project : TEST_PROJECT
@@ -11,11 +13,14 @@ import java.util.List;
  */
 public class DataVO {
 
-	/** 실행 명령어 */
-	private String command;
+	/** 실행 type */
+	private ReleaseType type;
 
 	/** 패키징 number */
 	private String releaseNum;
+
+	/** FTP 업로드할 tar */
+	private String tarFileName;
 
 	/** package 파일 리스트 */
 	private List<String> packageFilePathList;
@@ -50,20 +55,6 @@ public class DataVO {
 		this.packageFilePathList = packageFilePathList;
 	}
 
-	/**
-	 * @return the command
-	 */
-	public String getCommand() {
-		return command;
-	}
-
-	/**
-	 * @param command the command to set
-	 */
-	public void setCommand(String command) {
-		this.command = command;
-	}
-
 	public String getReleaseNum() {
 		return releaseNum;
 	}
@@ -72,10 +63,45 @@ public class DataVO {
 		this.releaseNum = releaseNum;
 	}
 
+	/**
+	 * @return the type
+	 */
+	public ReleaseType getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(ReleaseType type) {
+		this.type = type;
+	}
+
+	/**
+	 * @return the tarFileName
+	 */
+	public String getTarFileName() {
+		return tarFileName;
+	}
+
+	/**
+	 * @param tarFileName the tarFileName to set
+	 */
+	public void setTarFileName(String tarFileName) {
+		this.tarFileName = tarFileName;
+	}
+
+	/**
+	 * <pre>
+	 * toString
+	 *
+	 * <pre>
+	 * @return
+	 */
 	@Override
 	public String toString() {
-		return "DataVO [command=" + command + ", releaseNum=" + releaseNum + ", packageFilePathList="
-				+ packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList
-				+ ", csvRollbackFilePathList=" + csvRollbackFilePathList + "]";
+		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", packageFilePathList="
+				+ packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList + ", csvRollbackFilePathList=" + csvRollbackFilePathList
+				+ "]";
 	}
 }
