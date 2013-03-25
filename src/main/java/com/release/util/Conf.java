@@ -1,5 +1,6 @@
 package com.release.util;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,7 +15,7 @@ import java.util.Properties;
 public class Conf {
 
 	private static Properties mPro = null;
-	public static String mPpUrl = "conf.xml";
+	public static String confFileName = "conf.xml";
 
 	/**
 	 * <pre>
@@ -24,7 +25,8 @@ public class Conf {
 	 * @throws IOException
 	 */
 	public static void init() throws IOException {
-		InputStream in = Conf.class.getClassLoader().getResourceAsStream(mPpUrl);
+//		InputStream in = Conf.class.getClassLoader().getResourceAsStream(mPpUrl);
+		InputStream in = new FileInputStream(confFileName);
 		Conf conf = new Conf();
 		mPro = conf.loadProperties(in);
 	}
