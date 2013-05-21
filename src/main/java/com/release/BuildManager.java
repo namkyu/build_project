@@ -27,8 +27,6 @@ public class BuildManager {
 	 */
 	public static void main(String[] args) {
 		try {
-			Conf.init();
-
 			// 실행 옵션
 			String command = args[0].toUpperCase();
 			if ("HELP".equals(command)) {
@@ -42,6 +40,7 @@ public class BuildManager {
 			// upload file name
 			String tarFileName = null;
 			if (ReleaseType.PUTALL.name().equals(command)) {
+				Conf.init();
 				tarFileName = args[2];
 			}
 
