@@ -24,11 +24,16 @@ public class Conf {
 	 * <pre>
 	 * @throws IOException
 	 */
-	public static void init() throws IOException {
-//		InputStream in = Conf.class.getClassLoader().getResourceAsStream(mPpUrl);
-		InputStream in = new FileInputStream(confFileName);
-		Conf conf = new Conf();
-		mPro = conf.loadProperties(in);
+	public static void init()  {
+		InputStream in = null;
+		try {
+			in = new FileInputStream(confFileName);
+			Conf conf = new Conf();
+			mPro = conf.loadProperties(in);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			new RuntimeException(ex);
+		}
 	}
 
 	/**

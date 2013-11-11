@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.SocketException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.oroinc.net.ftp.FTPClient;
@@ -30,6 +31,7 @@ public class FTPUtilTest {
 	}
 
 	@Test
+	@Ignore
 	public void ftpLogin() throws SocketException, IOException {
 		Conf.init();
 		client.connect("localhost", 21);

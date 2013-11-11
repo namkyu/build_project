@@ -36,6 +36,7 @@ public class BuildManager {
 
 			// package number
 			String packageNum = args[1];
+			int revisionNum = Integer.parseInt(args[2]);
 
 			// upload file name
 			String tarFileName = null;
@@ -46,7 +47,7 @@ public class BuildManager {
 
 			BuildManager buildManager = new BuildManager();
 			buildManager.valid(command, packageNum, tarFileName);
-			buildManager.startProcess(command, packageNum, tarFileName);
+			buildManager.startProcess(command, packageNum, tarFileName, revisionNum);
 
 		} catch (Exception e) {
 			help();
@@ -93,8 +94,8 @@ public class BuildManager {
 	 * @param releaseNum
 	 * @param tarFileName
 	 */
-	public void startProcess(String command, String releaseNum, String tarFileName) {
-		new BuildHandler(command, releaseNum, tarFileName).execute();
+	public void startProcess(String command, String releaseNum, String tarFileName, int revisionNum) {
+		new BuildHandler(command, releaseNum, tarFileName, revisionNum).execute();
 	}
 
 	/**

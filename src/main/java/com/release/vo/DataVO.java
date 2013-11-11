@@ -22,6 +22,8 @@ public class DataVO {
 	/** FTP 업로드할 tar */
 	private String tarFileName;
 
+	private int revisionNum;
+
 	/** package 파일 리스트 */
 	private List<String> packageFilePathList;
 
@@ -89,6 +91,20 @@ public class DataVO {
 	 */
 	public void setTarFileName(String tarFileName) {
 		this.tarFileName = tarFileName;
+	}
+
+	/**
+	 * @return the revisionNum
+	 */
+	public int getRevisionNum() {
+		return revisionNum;
+	}
+
+	/**
+	 * @param revisionNum the revisionNum to set
+	 */
+	public void setRevisionNum(int revisionNum) {
+		this.revisionNum = revisionNum;
 	}
 
 	/**

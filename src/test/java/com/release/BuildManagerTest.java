@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.release.util.Conf;
@@ -28,29 +27,35 @@ public class BuildManagerTest {
 		buildManager = new BuildManager();
 	}
 
+//	@Test
+//	@Ignore
+//	public void packageTest() {
+//		buildManager.startProcess("PACKAGE", "E:/test/build/R001", "");
+//	}
+//
+//	@Test
+//	@Ignore
+//	public void installTest() {
+//		buildManager.startProcess("INSTALL", "E:/test/build/R001", "");
+//	}
+//
+//	@Test
+//	@Ignore
+//	public void rollTest() {
+//		buildManager.startProcess("ROLLBACK", "E:/test/build/R001", "");
+//	}
+//
+//	@Test
+//	@Ignore
+//	public void putAllTest() throws IOException {
+//		Conf.init();
+//		buildManager.startProcess("PUTALL", "E:/test/build/R001", "R001.tar.gz");
+//	}
+//
 	@Test
-	@Ignore
-	public void packageTest() {
-		buildManager.startProcess("PACKAGE", "E:/test/build/R001", "");
-	}
-
-	@Test
-	@Ignore
-	public void installTest() {
-		buildManager.startProcess("INSTALL", "E:/test/build/R001", "");
-	}
-
-	@Test
-	@Ignore
-	public void rollTest() {
-		buildManager.startProcess("ROLLBACK", "E:/test/build/R001", "");
-	}
-
-	@Test
-	@Ignore
-	public void putAllTest() throws IOException {
+	public void svnHistoryTest() throws IOException {
 		Conf.init();
-		buildManager.startProcess("PUTALL", "E:/test/build/R001", "R001.tar.gz");
+		buildManager.startProcess("SVN_HISTORY", "E:/test/build/R001", null, 122);
 	}
 
 	@Test

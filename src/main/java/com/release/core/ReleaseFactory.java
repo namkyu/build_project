@@ -6,6 +6,7 @@ import com.release.handler.FtpPutBuilder;
 import com.release.handler.InstallBuilder;
 import com.release.handler.PackageBuilder;
 import com.release.handler.RollbackBuilder;
+import com.release.handler.SVNHistoryBuilder;
 
 
 /**
@@ -34,7 +35,11 @@ public class ReleaseFactory {
 			return new RollbackBuilder();
 		} else if (ReleaseType.PUTALL == type) {
 			return new FtpPutBuilder();
-		} else {
+		} else if (ReleaseType.SVN_HISTORY == type) {
+			return new SVNHistoryBuilder();
+		}
+
+		else {
 			return null;
 		}
 	}

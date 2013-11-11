@@ -14,17 +14,18 @@ import com.release.vo.DataVO;
 public class BuildHandler {
 
 	/** data */
-	public DataVO data;
+	private DataVO data;
 
 	/**
 	 * @param command
 	 * @param releaseNum
 	 */
-	public BuildHandler(String command, String releaseNum, String tarFileName) {
+	public BuildHandler(String command, String releaseNum, String tarFileName, int revisionNum) {
 		data = new DataVO();
 		data.setType(ReleaseType.valueOf(command));
 		data.setReleaseNum(releaseNum);
 		data.setTarFileName(tarFileName);
+		data.setRevisionNum(revisionNum);
 	}
 
 	/**

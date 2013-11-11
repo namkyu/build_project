@@ -29,8 +29,21 @@ public abstract class AbstractBuilder extends CommonBuilder {
 
 		// process
 		process();
+
 		// after process
 		postHandle();
+
+		// hook method
+		hook();
+	}
+
+	/**
+	 * <pre>
+	 * hook
+	 *
+	 * <pre>
+	 */
+	protected void hook() {
 	}
 
 	/**
