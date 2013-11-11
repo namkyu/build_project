@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.util;
 
 import java.io.FileInputStream;
@@ -6,11 +11,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @FileName : Conf.java
- * @Project : build_project
- * @Date : 2013. 3. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class Conf.
  */
 public class Conf {
 

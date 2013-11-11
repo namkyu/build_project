@@ -1,12 +1,13 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.common;
 
 
 /**
- * @FileName : BaseType.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class BaseType.
  */
 public class BaseType {
 

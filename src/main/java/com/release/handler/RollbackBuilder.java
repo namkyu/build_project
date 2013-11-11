@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
@@ -9,11 +14,7 @@ import com.release.vo.DataVO;
 
 
 /**
- * @FileName : RollbackBuilder.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class RollbackBuilder.
  */
 public class RollbackBuilder extends AbstractBuilder {
 
@@ -47,7 +48,7 @@ public class RollbackBuilder extends AbstractBuilder {
 	@Override
 	protected void process() {
 		String rollbackFile = makePath(ROLLBACK_FILE_NAME, data.getReleaseNum());
-		List<String> csvRollbackFilePathList = FileUtil.readFile(rollbackFile);
+		List<String> csvRollbackFilePathList = makePackageFilePathList(rollbackFile);
 
 		for (String csvRollbackFilePath : csvRollbackFilePathList) {
 			String rollbaFilePath = csvRollbackFilePath.split(SEPARATOR)[0];
@@ -59,6 +60,24 @@ public class RollbackBuilder extends AbstractBuilder {
 			System.out.println("##process##(rollback file copy) backupFilePath=" + backupFilePath + ", rollbaFilePath=" + rollbaFilePath);
 			FileUtil.nioCopy(backupFilePath, rollbaFilePath);
 		}
+	}
+
+	/**
+	 * <pre>
+	 * makePackageFilePathList
+	 *
+	 * <pre>
+	 * @param packageFile
+	 * @return
+	 */
+	private List<String> makePackageFilePathList(String packageFile) {
+		BufferedReaderCallback callback = new BufferedReaderCallback() {
+			public String doSomethingWithReader(String line) {
+				return line;
+			}
+		};
+
+		return FileUtil.readFile(packageFile, callback);
 	}
 
 	/**
@@ -80,6 +99,18 @@ public class RollbackBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void error() {
+
+	}
+
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	@Override
+	protected void valid() {
+		// TODO Auto-generated method stub
 
 	}
 

@@ -1,14 +1,15 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.util.ftp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @FileName : FTPVO.java
- * @Project : sample_project
- * @Date : 2012. 4. 16.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class FTPVO.
  */
 public class FTPVO {
 

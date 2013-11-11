@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.core;
 
 import com.release.common.ReleaseType;
@@ -10,11 +15,7 @@ import com.release.handler.SVNHistoryBuilder;
 
 
 /**
- * @FileName : ReleaseFactory.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * A factory for creating Release objects.
  */
 public class ReleaseFactory {
 
@@ -39,8 +40,6 @@ public class ReleaseFactory {
 			return new SVNHistoryBuilder();
 		}
 
-		else {
-			return null;
-		}
+		return null;
 	}
 }

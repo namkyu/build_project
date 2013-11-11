@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.vo;
 
 import java.util.List;
@@ -5,11 +10,7 @@ import java.util.List;
 import com.release.common.ReleaseType;
 
 /**
- * @FileName : DataVO.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class DataVO.
  */
 public class DataVO {
 

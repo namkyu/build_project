@@ -1,14 +1,15 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import com.release.vo.DataVO;
 
 
 /**
- * @FileName : AbstractBuilder.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 : abstract
+ * The Class AbstractBuilder.
  */
 public abstract class AbstractBuilder extends CommonBuilder {
 
@@ -19,11 +20,14 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 * <pre>
 	 * @param data
 	 */
-	public void build(DataVO data) {
+	public void build(DataVO dataVO) {
+
+		valid();
+
 		// before process
-		boolean isSuccess = preHandle(data);
+		boolean isSuccess = preHandle(dataVO);
 		if (isSuccess == false) {
-			System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + data.getType() + ", releaseNum=" + data.getReleaseNum());
+			System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + dataVO.getType() + ", releaseNum=" + dataVO.getReleaseNum());
 			return;
 		}
 
@@ -45,6 +49,14 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 */
 	protected void hook() {
 	}
+
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	protected abstract void valid();
 
 	/**
 	 * <pre>

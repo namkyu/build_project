@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
@@ -10,16 +15,11 @@ import com.release.util.SVNUtil;
 import com.release.vo.DataVO;
 
 /**
- * @FileName : SVNUpdateBuilder.java
- * @Project : build_project
- * @Date : 2013. 11. 6.
- * @작성자 : nklee
- * @프로그램설명 :
+ * The Class SVNHistoryBuilder.
  */
 public class SVNHistoryBuilder extends AbstractBuilder {
 
 	List<String> historyList;
-
 	DataVO data;
 
 	public SVNHistoryBuilder() {
@@ -79,8 +79,16 @@ public class SVNHistoryBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void error() {
-		// TODO Auto-generated method stub
+	}
 
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	@Override
+	protected void valid() {
 	}
 
 }

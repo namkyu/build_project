@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
@@ -6,16 +11,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.release.util.Conf;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
 
 /**
- * @FileName : BackupBuilder.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 : 패키징
+ * The Class PackageBuilder.
  */
 public class PackageBuilder extends AbstractBuilder {
 
@@ -41,7 +45,8 @@ public class PackageBuilder extends AbstractBuilder {
 
 		// 적용 파일 리스트 추출 후 set
 		String packageFile = makePath(PACKAGE_FILE_NAME, data.getReleaseNum());
-		data.setPackageFilePathList(FileUtil.readFile(packageFile));
+		List<String> packageFilePathList = makePackageFilePathList(packageFile);
+		data.setPackageFilePathList(getUniqueList(packageFilePathList));
 
 		// 적용 파일 존재 유무 확인
 		if (existFile(data.getPackageFilePathList()) == false) {
@@ -49,6 +54,25 @@ public class PackageBuilder extends AbstractBuilder {
 		}
 
 		return true;
+	}
+
+	/**
+	 * <pre>
+	 * makePackageFilePathList
+	 *
+	 * <pre>
+	 * @param packageFile
+	 * @return
+	 */
+	private List<String> makePackageFilePathList(String packageFile) {
+		BufferedReaderCallback callback = new BufferedReaderCallback() {
+			public String doSomethingWithReader(String line) {
+				String cutPath = line.replaceFirst(Conf.getValue("delete.prefix"), StringUtils.EMPTY);
+				return Conf.getValue("local.workspace") + cutPath;
+			}
+		};
+
+		return FileUtil.readFile(packageFile, callback);
 	}
 
 	/**
@@ -132,5 +156,15 @@ public class PackageBuilder extends AbstractBuilder {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	@Override
+	protected void valid() {
 	}
 }

@@ -1,16 +1,19 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
- * @FileName : Common.java
- * @Project : build_project
- * @Date : 2012. 5. 4.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class CommonBuilder.
  */
 public class CommonBuilder {
 
@@ -149,5 +152,18 @@ public class CommonBuilder {
 		}
 
 		return destinationFilePath;
+	}
+
+	/**
+	 * <pre>
+	 * getUniqueList
+	 *
+	 * <pre>
+	 * @param list
+	 * @return
+	 */
+	public <E> List<E> getUniqueList(List<E> list) {
+		List<E> uniqueItems = new ArrayList<E>(new HashSet<E>(list));
+        return uniqueItems;
 	}
 }

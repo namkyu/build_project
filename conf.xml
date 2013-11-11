@@ -9,10 +9,10 @@
 	<entry key="ftp.remote.upload.directory">/remote/RELEASE</entry>
 	<entry key="ftp.local.upload.directory">E:\test\build\R001</entry>
 
-	<entry key="svn.repository.url">https://dev.naver.com/svn/namkyu/trunk/mySpringProject</entry>
-	<entry key="svn.id">lng1982</entry>
-	<entry key="svn.password">rbdn2001</entry>
-	<entry key="local.workspace">D:\workspace\project_test\</entry>
-	<entry key="delete.prefix">/trunk</entry>
+	<entry key="svn.repository.url"></entry>
+	<entry key="svn.id"></entry>
+	<entry key="svn.password"></entry>
 
+	<entry key="local.workspace">D:\workspace\project_test</entry>
+	<entry key="delete.prefix">trunk</entry>
 </properties>

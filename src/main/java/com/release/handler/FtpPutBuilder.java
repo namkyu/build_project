@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import com.release.util.Conf;
@@ -7,11 +12,7 @@ import com.release.util.ftp.FTPVO;
 import com.release.vo.DataVO;
 
 /**
- * @FileName : FTPBuilder.java
- * @Project : build_project
- * @Date : 2013. 3. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class FtpPutBuilder.
  */
 public class FtpPutBuilder extends AbstractBuilder {
 
@@ -72,6 +73,18 @@ public class FtpPutBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void error() {
+
+	}
+
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	@Override
+	protected void valid() {
+		// TODO Auto-generated method stub
 
 	}
 

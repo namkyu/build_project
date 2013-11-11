@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
@@ -11,11 +16,7 @@ import com.release.vo.DataVO;
 
 
 /**
- * @FileName : InstallBuilder.java
- * @Project : TEST_PROJECT
- * @Date : 2012. 1. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class InstallBuilder.
  */
 public class InstallBuilder extends AbstractBuilder {
 
@@ -44,7 +45,7 @@ public class InstallBuilder extends AbstractBuilder {
 
 		// cvs형식의 인스톨 파일 리스트 추출
 		String installFile = makePath(INSTALL_FILE_NAME, data.getReleaseNum());
-		List<String> csvInstallFilePathList = FileUtil.readFile(installFile);
+		List<String> csvInstallFilePathList = makePackageFilePathList(installFile);
 
 		// 백업 파일 리스트 중 중복되는 파일 name 저장 객체
 		List<String> fileNameList = new ArrayList<String>();
@@ -74,6 +75,24 @@ public class InstallBuilder extends AbstractBuilder {
 		data.setCsvInstallFilePathList(csvInstallFilePathList);
 
 		return true;
+	}
+
+	/**
+	 * <pre>
+	 * makePackageFilePathList
+	 *
+	 * <pre>
+	 * @param packageFile
+	 * @return
+	 */
+	private List<String> makePackageFilePathList(String packageFile) {
+		BufferedReaderCallback callback = new BufferedReaderCallback() {
+			public String doSomethingWithReader(String line) {
+				return line;
+			}
+		};
+
+		return FileUtil.readFile(packageFile, callback);
 	}
 
 	/**
@@ -125,6 +144,18 @@ public class InstallBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void error() {
+
+	}
+
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 */
+	@Override
+	protected void valid() {
+		// TODO Auto-generated method stub
 
 	}
 }

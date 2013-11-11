@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013 namkyu.
+ * All right reserved.
+ *
+ */
 package com.release.util.ftp;
 
 import org.junit.Before;
@@ -6,11 +11,7 @@ import org.junit.Test;
 
 
 /**
- * @FileName : FTPHandlerTest.java
- * @Project : build_project
- * @Date : 2013. 3. 20.
- * @작성자 : 이남규
- * @프로그램설명 :
+ * The Class FTPHandlerTest.
  */
 public class FTPHandlerTest {
 
