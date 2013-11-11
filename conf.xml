@@ -13,6 +13,8 @@
 	<entry key="svn.id"></entry>
 	<entry key="svn.password"></entry>
 
-	<entry key="local.workspace">D:\workspace\project_test</entry>
-	<entry key="delete.prefix">trunk</entry>
+	<entry key="local.workspace">D:/workspace/project_test</entry>
+	<entry key="remote.workspace">E:/test/build/remoteDir</entry>
+	<entry key="history.path.delete.text">/NShop2011,/trunk</entry> <!-- svn history에서 복사해온 path에서 필요없는 문자열 삭제 -->
+	<entry key="local.file.path.delete.txt">/WebContent</entry> <!-- install.txt 파일 생성 시 local path에서 삭제해야 할 문자열 지정  -->
 </properties>

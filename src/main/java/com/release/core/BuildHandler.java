@@ -27,8 +27,8 @@ public class BuildHandler {
 		Properties properties = parseConfigParams(args);
 
 		dataVO = new DataVO();
-		dataVO.setType(ReleaseType.valueOf(properties.getProperty("command").toUpperCase()));
-		dataVO.setReleaseNum(properties.getProperty("packageNum"));
+		dataVO.setType(ReleaseType.valueOf(properties.getProperty("c").toUpperCase()));
+		dataVO.setReleaseNum(properties.getProperty("p"));
 	}
 
 	/**

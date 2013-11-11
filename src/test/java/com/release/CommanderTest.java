@@ -24,23 +24,23 @@ public class CommanderTest {
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void packageTest() {
-		String[] args = {"command=package", "packageNum=E:/test/build/R001"};
+		String[] args = {"c=package", "p=E:/test/build/R001"};
 		new BuildHandler(args).execute();
 	}
 
 	@Test
 	@Ignore
 	public void installTest() {
-		String[] args = {"command=install", "packageNum=E:/test/build/R001"};
+		String[] args = {"c=install", "p=E:/test/build/R001"};
 		new BuildHandler(args).execute();
 	}
 
 	@Test
 	@Ignore
 	public void rollTest() {
-		String[] args = {"command=rollback", "packageNum=E:/test/build/R001"};
+		String[] args = {"c=rollback", "p=E:/test/build/R001"};
 		new BuildHandler(args).execute();
 	}
 }

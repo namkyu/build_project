@@ -58,25 +58,6 @@ public class PackageBuilder extends AbstractBuilder {
 
 	/**
 	 * <pre>
-	 * makePackageFilePathList
-	 *
-	 * <pre>
-	 * @param packageFile
-	 * @return
-	 */
-	private List<String> makePackageFilePathList(String packageFile) {
-		BufferedReaderCallback callback = new BufferedReaderCallback() {
-			public String doSomethingWithReader(String line) {
-				String cutPath = line.replaceFirst(Conf.getValue("delete.prefix"), StringUtils.EMPTY);
-				return Conf.getValue("local.workspace") + cutPath;
-			}
-		};
-
-		return FileUtil.readFile(packageFile, callback);
-	}
-
-	/**
-	 * <pre>
 	 * 패키징 진행
 	 *
 	 * <pre>
@@ -105,7 +86,7 @@ public class PackageBuilder extends AbstractBuilder {
 			System.out.println("##process##(package file copy) packageFilePath=" + packageFilePath + ", destinationFilePath=" + destinationFilePath);
 
 			fileNameList.add(packageFileName);
-			csvInstallFilePathList.add(packageFilePath + SEPARATOR + destinationFilePath);
+			csvInstallFilePathList.add(replacePath(packageFilePath) + SEPARATOR + destinationFilePath);
 		}
 
 		data.setCsvInstallFilePathList(csvInstallFilePathList);
@@ -119,11 +100,11 @@ public class PackageBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void postHandle() {
-		new File(INSTALL_FILE_NAME).delete();
+		String installFile = makePath(INSTALL_FILE_NAME, data.getReleaseNum());
+		new File(installFile).delete();
 
 		// csv 형식으로 된 install.txt 파일 생성
 		for (String installPath : data.getCsvInstallFilePathList()) {
-			String installFile = makePath(INSTALL_FILE_NAME, data.getReleaseNum());
 			FileUtil.writeMsg(installPath, installFile);
 		}
 	}
@@ -156,6 +137,54 @@ public class PackageBuilder extends AbstractBuilder {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * <pre>
+	 * makePackageFilePathList
+	 *
+	 * <pre>
+	 * @param packageFile
+	 * @return
+	 */
+	private List<String> makePackageFilePathList(String packageFile) {
+		BufferedReaderCallback callback = new BufferedReaderCallback() {
+			public String doSomethingWithReader(String line) {
+				String cutPath = replaceDeleteTxtToEmpty(line, Conf.getValue("history.path.delete.text"));
+				return Conf.getValue("local.workspace") + cutPath;
+			}
+		};
+		return FileUtil.readFile(packageFile, callback);
+	}
+
+	/**
+	 * <pre>
+	 * chageDeleteTxt
+	 *
+	 * <pre>
+	 * @param str
+	 * @return
+	 */
+	private String replaceDeleteTxtToEmpty(String str, String replaceTxt) {
+		String[] deleteTxt = replaceTxt.split(",");
+		for (String txt : deleteTxt) {
+			str = str.replaceFirst(txt, StringUtils.EMPTY);
+		}
+		return str;
+	}
+
+	/**
+	 * <pre>
+	 * replacePath
+	 *
+	 * <pre>
+	 * @param packageFilePath
+	 * @return
+	 */
+	private String replacePath(String packageFilePath) {
+		String removeWorkspace = replaceDeleteTxtToEmpty(packageFilePath, Conf.getValue("local.workspace"));
+		String resultPath = replaceDeleteTxtToEmpty(removeWorkspace, Conf.getValue("local.file.path.delete.txt"));
+		return Conf.getValue("remote.workspace") + resultPath;
 	}
 
 	/**
