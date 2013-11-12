@@ -53,9 +53,9 @@ public class Commander {
 		println("ROLLBACK : 소스 원복");
 		println(StringUtils.EMPTY);
 		println("java -jar build_project.jar 명령옵션 패키지번호");
-		println(" - PACKAGE example : java -jar build_project.jar command=PACKAGE packageNum=R001");
-		println(" - INSTALL example : java -jar build_project.jar command=INSTALL packageNum=R001");
-		println(" - ROLLBACK example : java -jar build_project.jar command=ROLLBACK packageNum=R001");
+		println(" - PACKAGE example : java -jar build_project.jar c=PACKAGE p=R001");
+		println(" - INSTALL example : java -jar build_project.jar c=INSTALL p=R001");
+		println(" - ROLLBACK example : java -jar build_project.jar c=ROLLBACK p=R001");
 		println(StringUtils.EMPTY);
 		println("build_project.jar 파일이 있는 경로에 패키지번호 디렉토리가 존재해야 함");
 		println("패키지번호 디렉토리 안에는 적용할 소스 리스트가 기록되어 있는 package.txt 파일이 존재해야 함");
