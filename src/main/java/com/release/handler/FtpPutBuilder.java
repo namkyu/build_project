@@ -24,12 +24,10 @@ public class FtpPutBuilder extends AbstractBuilder {
 	 * preHandle
 	 *
 	 * <pre>
-	 * @param data
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle(DataVO data) {
-		this.data = data;
+	protected boolean preHandle() {
 		return true;
 	}
 
@@ -81,11 +79,11 @@ public class FtpPutBuilder extends AbstractBuilder {
 	 * valid
 	 *
 	 * <pre>
+	 * @param dataVO
 	 */
 	@Override
-	protected void valid() {
-		// TODO Auto-generated method stub
-
+	protected void valid(DataVO dataVO) {
+		this.data = dataVO;
 	}
 
 

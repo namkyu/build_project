@@ -35,8 +35,7 @@ public class SVNHistoryBuilder extends AbstractBuilder {
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle(DataVO data) {
-		this.data = data;
+	protected boolean preHandle() {
 		return true;
 	}
 
@@ -86,9 +85,10 @@ public class SVNHistoryBuilder extends AbstractBuilder {
 	 * valid
 	 *
 	 * <pre>
+	 * @param dataVO
 	 */
 	@Override
-	protected void valid() {
+	protected void valid(DataVO dataVO) {
+		this.data = dataVO;
 	}
-
 }

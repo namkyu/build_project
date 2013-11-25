@@ -26,16 +26,13 @@ public class RollbackBuilder extends AbstractBuilder {
 	 * preHandle
 	 *
 	 * <pre>
-	 * @param dataVO
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle(DataVO dataVO) {
+	protected boolean preHandle() {
 		System.out.println("#########################################################");
 		System.out.println("## ROLLBACK");
 		System.out.println("#########################################################");
-
-		this.data = dataVO;
 		return true;
 	}
 
@@ -107,11 +104,10 @@ public class RollbackBuilder extends AbstractBuilder {
 	 * valid
 	 *
 	 * <pre>
+	 * @param dataVO
 	 */
 	@Override
-	protected void valid() {
-		// TODO Auto-generated method stub
-
+	protected void valid(DataVO dataVO) {
+		this.data = dataVO;
 	}
-
 }

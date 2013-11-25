@@ -15,6 +15,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.release.util.Conf;
 import com.release.util.FileUtil;
+import com.release.util.SeleniumUtil;
+import com.release.util.ZipUtil;
 import com.release.vo.DataVO;
 
 
@@ -32,16 +34,13 @@ public class PackageBuilder extends AbstractBuilder {
 	 * 적용 파일 리스트 추출
 	 * 적용 파일 존재 유무 확인
 	 * <pre>
-	 * @param dataVO
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle(DataVO dataVO) {
+	protected boolean preHandle() {
 		System.out.println("#########################################################");
 		System.out.println("## PACKAGE");
 		System.out.println("#########################################################");
-
-		this.data = dataVO;
 
 		// 적용 파일 리스트 추출 후 set
 		String packageFile = makePath(PACKAGE_FILE_NAME, data.getReleaseNum());
@@ -107,6 +106,30 @@ public class PackageBuilder extends AbstractBuilder {
 		for (String installPath : data.getCsvInstallFilePathList()) {
 			FileUtil.writeMsg(installPath, installFile);
 		}
+
+		// 디렉토리 압축
+		String zipTargetDirectory = data.getReleaseNum();
+		ZipUtil.zip(zipTargetDirectory, zipTargetDirectory + ZIP_FILE_SUFFIX);
+	}
+
+	/**
+	 * <pre>
+	 * interceptorPostHandle
+	 * postHandle 메소드 실행 전 처리
+	 * <pre>
+	 */
+	@Override
+	protected void interceptorPostHandle() {
+		List<String> csvInstallFilePathList = data.getCsvInstallFilePathList();
+		List<String> addFilePathList = new ArrayList<String>();
+
+		for (String installPath : csvInstallFilePathList) {
+			if (installPath.indexOf("NCID") > -1) {
+				String appendPath = installPath.replaceFirst("NCID", "NCID-UI");
+				addFilePathList.add(appendPath);
+			}
+		}
+		csvInstallFilePathList.addAll(addFilePathList);
 	}
 
 	/**
@@ -132,7 +155,7 @@ public class PackageBuilder extends AbstractBuilder {
 		for (String filePath : fileList) {
 			boolean check = new File(filePath).isFile();
 			if (check == false) {
-				System.out.println("##existFile## (file not found) check=" + check + ", filePath=" + filePath);
+				System.out.println("##existFile## (file not found) check=" + check + ", filePath=" + filePath + ", file count=" + fileList.size());
 				return false;
 			}
 		}
@@ -142,7 +165,7 @@ public class PackageBuilder extends AbstractBuilder {
 	/**
 	 * <pre>
 	 * makePackageFilePathList
-	 *
+	 * 로컬 full path 생성
 	 * <pre>
 	 * @param packageFile
 	 * @return
@@ -187,13 +210,31 @@ public class PackageBuilder extends AbstractBuilder {
 		return Conf.getValue("remote.workspace") + resultPath;
 	}
 
+
+	/**
+	 * <pre>
+	 * hook
+	 * 브라우저 띄우기
+	 * <pre>
+	 */
+	@Override
+	protected void hook() {
+		String zip = data.getReleaseNum() + ZIP_FILE_SUFFIX;
+		String uploadTargetNetwork = Conf.getValue("selenium.webhard.upload.target.network");
+		SeleniumUtil seleniumUtil = new SeleniumUtil(zip, uploadTargetNetwork);
+		seleniumUtil.loadBrowserToUpload();
+		seleniumUtil.stop();
+	}
+
 	/**
 	 * <pre>
 	 * valid
 	 *
 	 * <pre>
+	 * @param dataVO
 	 */
 	@Override
-	protected void valid() {
+	protected void valid(DataVO dataVO) {
+		this.data = dataVO;
 	}
 }

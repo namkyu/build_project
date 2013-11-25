@@ -19,7 +19,7 @@ import com.release.handler.AbstractBuilder;
 /**
  * The Class ReleaseProxy.
  */
-@Deprecated
+//@Deprecated
 public class ReleaseProxy {
 
 	/**

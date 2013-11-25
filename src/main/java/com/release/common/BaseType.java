@@ -17,6 +17,8 @@ public class BaseType {
 	public static String SEPARATOR = ",";
 	/** 인코딩 */
 	public static String CHARACTER_SET = "UTF-8";
+	/** zip file suffix */
+	public static final String ZIP_FILE_SUFFIX = ".zip";
 
 	/** 적용 소스 디렉토리 */
 	public static String SOURCE_DIRECTORY = "source";

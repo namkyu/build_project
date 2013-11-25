@@ -22,10 +22,12 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 */
 	public void build(DataVO dataVO) {
 
-		valid();
+		// validation check
+		valid(dataVO);
 
 		// before process
-		boolean isSuccess = preHandle(dataVO);
+		interceptorPreHandle();
+		boolean isSuccess = preHandle();
 		if (isSuccess == false) {
 			System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + dataVO.getType() + ", releaseNum=" + dataVO.getReleaseNum());
 			return;
@@ -35,10 +37,20 @@ public abstract class AbstractBuilder extends CommonBuilder {
 		process();
 
 		// after process
+		interceptorPostHandle();
 		postHandle();
 
-		// hook method
+		// hook 메소드
 		hook();
+	}
+
+	/**
+	 * <pre>
+	 * interceptorPreHandle
+	 *
+	 * <pre>
+	 */
+	protected void interceptorPreHandle() {
 	}
 
 	/**
@@ -52,21 +64,31 @@ public abstract class AbstractBuilder extends CommonBuilder {
 
 	/**
 	 * <pre>
-	 * valid
+	 * interceptorPostHandle
 	 *
 	 * <pre>
 	 */
-	protected abstract void valid();
+	protected void interceptorPostHandle() {
+	}
+
+	/**ㅇ
+	/**
+	 * <pre>
+	 * valid
+	 *
+	 * <pre>
+	 * @param dataVO
+	 */
+	protected abstract void valid(DataVO dataVO);
 
 	/**
 	 * <pre>
 	 * preHandle
 	 * 전 처리
 	 * <pre>
-	 * @param data
 	 * @return
 	 */
-	protected abstract boolean preHandle(DataVO data);
+	protected abstract boolean preHandle();
 
 	/**
 	 * <pre>

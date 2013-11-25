@@ -31,9 +31,9 @@ public class CommanderTest {
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void installTest() {
-		String[] args = {"c=install", "p=E:/test/build/R001"};
+		String[] args = {"c=install", "p=C:/Users/nklee/Downloads/R001"};
 		new BuildHandler(args).execute();
 	}
 
