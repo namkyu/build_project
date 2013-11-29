@@ -7,8 +7,11 @@ package com.release.handler;
 
 import static com.release.common.BaseType.*;
 
+import java.io.File;
 import java.util.List;
 
+import com.release.core.AbstractBuilder;
+import com.release.core.BufferedReaderCallback;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
@@ -51,7 +54,7 @@ public class RollbackBuilder extends AbstractBuilder {
 			String rollbaFilePath = csvRollbackFilePath.split(SEPARATOR)[0];
 			String backupFilePath = csvRollbackFilePath.split(SEPARATOR)[1];
 
-			String destDir = getDirPath(rollbaFilePath);
+			String destDir = new File(rollbaFilePath).getParent();
 			makeDir(destDir);
 
 			System.out.println("##process##(rollback file copy) backupFilePath=" + backupFilePath + ", rollbaFilePath=" + rollbaFilePath);

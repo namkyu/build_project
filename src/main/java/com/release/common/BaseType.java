@@ -23,7 +23,7 @@ public class BaseType {
 	/** 적용 소스 디렉토리 */
 	public static String SOURCE_DIRECTORY = "source";
 	/** 백업 소스 디렉토리 */
-	public static String BACKUP_DIRECTORY = "backup";
+	public static String BACKUP_DIRECTORY = "backup_";
 	/** 중복 파일 디렉토리 prefix */
 	public static String DUPL_DIRECTORY_PREFIX = "/dupl_";
 

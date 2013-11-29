@@ -9,6 +9,7 @@ import static com.release.common.BaseType.*;
 
 import java.util.List;
 
+import com.release.core.AbstractBuilder;
 import com.release.util.Conf;
 import com.release.util.FileUtil;
 import com.release.util.SVNUtil;

@@ -10,7 +10,6 @@ import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
 
 import com.release.common.ReleaseType;
-import com.release.handler.AbstractBuilder;
 import com.release.vo.DataVO;
 
 /**
@@ -29,6 +28,12 @@ public class BuildHandler {
 		dataVO = new DataVO();
 		dataVO.setType(ReleaseType.valueOf(properties.getProperty("c").toUpperCase()));
 		dataVO.setReleaseNum(properties.getProperty("p"));
+		dataVO.setPassword(properties.getProperty("pw"));
+
+		String mode = properties.getProperty("m");
+		if (mode != null && "test".equalsIgnoreCase(mode)) {
+			dataVO.setTest(true);
+		}
 	}
 
 	/**

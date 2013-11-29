@@ -97,7 +97,7 @@ public class ZipUtil {
 				}
 			}
 		} catch (IOException ex) {
-			new RuntimeException(ex);
+			throw new RuntimeException(ex);
 		} finally {
 			if (zi != null) {
 				try {
@@ -133,7 +133,7 @@ public class ZipUtil {
 		try {
 			unzip(new FileInputStream(zipFile), targetDir);
 		} catch (IOException ex) {
-			new RuntimeException(ex);
+			throw new RuntimeException(ex);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class ZipUtil {
 				}
 			}
 		} catch (IOException ex) {
-			new RuntimeException(ex);
+			throw new RuntimeException(ex);
 		} finally {
 			if (zi != null) {
 				try {
@@ -190,7 +190,7 @@ public class ZipUtil {
 				fos.write(buffer, 0, len);
 			}
 		} catch (IOException ex) {
-			new RuntimeException(ex);
+			throw new RuntimeException(ex);
 		} finally {
 			if (fos != null) {
 				try {
@@ -235,7 +235,7 @@ public class ZipUtil {
 			zipEntry(sourceFile, sourcePath, zos);
 			zos.finish();
 		} catch (IOException ex) {
-			new RuntimeException(ex);
+			throw new RuntimeException(ex);
 		} finally {
 			try {
 				if (zos != null)
@@ -283,7 +283,7 @@ public class ZipUtil {
 				}
 				zos.closeArchiveEntry();
 			} catch (IOException ex) {
-				new RuntimeException(ex);
+				throw new RuntimeException(ex);
 			} finally {
 				if (bis != null) {
 					try {

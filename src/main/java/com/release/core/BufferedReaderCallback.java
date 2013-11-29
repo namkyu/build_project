@@ -1,4 +1,4 @@
-package com.release.handler;
+package com.release.core;
 
 /**
  * @FileName : BufferedReaderCallback.java

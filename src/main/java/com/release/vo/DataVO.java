@@ -23,7 +23,12 @@ public class DataVO {
 	/** FTP 업로드할 tar */
 	private String tarFileName;
 
+	/** revisionNum */
 	private int revisionNum;
+
+	private boolean isTest;
+
+	private String password;
 
 	/** package 파일 리스트 */
 	private List<String> packageFilePathList;
@@ -109,6 +114,34 @@ public class DataVO {
 	}
 
 	/**
+	 * @return the isTest
+	 */
+	public boolean isTest() {
+		return isTest;
+	}
+
+	/**
+	 * @param isTest the isTest to set
+	 */
+	public void setTest(boolean isTest) {
+		this.isTest = isTest;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
 	 * <pre>
 	 * toString
 	 *
@@ -117,8 +150,8 @@ public class DataVO {
 	 */
 	@Override
 	public String toString() {
-		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", packageFilePathList="
-				+ packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList + ", csvRollbackFilePathList=" + csvRollbackFilePathList
-				+ "]";
+		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", revisionNum=" + revisionNum + ", isTest="
+				+ isTest + ", packageFilePathList=" + packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList
+				+ ", csvRollbackFilePathList=" + csvRollbackFilePathList + "]";
 	}
 }

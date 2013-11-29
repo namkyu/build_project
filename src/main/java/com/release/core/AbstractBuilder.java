@@ -3,7 +3,7 @@
  * All right reserved.
  *
  */
-package com.release.handler;
+package com.release.core;
 
 import com.release.vo.DataVO;
 
@@ -21,27 +21,31 @@ public abstract class AbstractBuilder extends CommonBuilder {
 	 * @param data
 	 */
 	public void build(DataVO dataVO) {
+		try {
+			// validation check
+			valid(dataVO);
 
-		// validation check
-		valid(dataVO);
+			// before process
+			interceptorPreHandle();
+			boolean isSuccess = preHandle();
+			if (isSuccess == false) {
+				System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + dataVO.getType() + ", releaseNum=" + dataVO.getReleaseNum());
+				return;
+			}
 
-		// before process
-		interceptorPreHandle();
-		boolean isSuccess = preHandle();
-		if (isSuccess == false) {
-			System.out.println("##build## (before process failed) isSucces=" + isSuccess + ", type=" + dataVO.getType() + ", releaseNum=" + dataVO.getReleaseNum());
-			return;
+			// process
+			process();
+
+			// after process
+			interceptorPostHandle();
+			postHandle();
+
+			// hook 메소드
+			hook();
+
+		} catch (Exception ex) {
+			error();
 		}
-
-		// process
-		process();
-
-		// after process
-		interceptorPostHandle();
-		postHandle();
-
-		// hook 메소드
-		hook();
 	}
 
 	/**

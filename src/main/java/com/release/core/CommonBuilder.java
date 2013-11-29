@@ -3,7 +3,7 @@
  * All right reserved.
  *
  */
-package com.release.handler;
+package com.release.core;
 
 import static com.release.common.BaseType.*;
 
@@ -49,32 +49,6 @@ public class CommonBuilder {
 		dir.setExecutable(true);
 		dir.setWritable(true);
 		dir.mkdir();
-	}
-
-	/**
-	 * <pre>
-	 * getFileName
-	 * 파일 name 추출
-	 * <pre>
-	 * @param filePath
-	 * @return
-	 */
-	public String getFileName(String filePath) {
-		String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
-		return fileName;
-	}
-
-	/**
-	 * <pre>
-	 * getDirectoryPath
-	 * 디렉토리 path 추출
-	 * <pre>
-	 * @param path
-	 * @return
-	 */
-	public String getDirPath(String path) {
-		String dirPath = path.substring(0, path.lastIndexOf("/"));
-		return dirPath;
 	}
 
 	/**

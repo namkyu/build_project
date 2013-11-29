@@ -14,5 +14,6 @@ public enum ReleaseType {
 	, INSTALL
 	, ROLLBACK
 	, PUTALL
-	, SVN_HISTORY;
+	, SVN_HISTORY
+	, ENCRYPT;
 }

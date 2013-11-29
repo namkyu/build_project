@@ -6,7 +6,7 @@
 package com.release.core;
 
 import com.release.common.ReleaseType;
-import com.release.handler.AbstractBuilder;
+import com.release.handler.EncryptHandler;
 import com.release.handler.FtpPutBuilder;
 import com.release.handler.InstallBuilder;
 import com.release.handler.PackageBuilder;
@@ -38,6 +38,8 @@ public class ReleaseFactory {
 			return new FtpPutBuilder();
 		} else if (ReleaseType.SVN_HISTORY == type) {
 			return new SVNHistoryBuilder();
+		} else if (ReleaseType.ENCRYPT == type) {
+			return new EncryptHandler();
 		}
 
 		return null;

@@ -14,7 +14,6 @@ import java.util.List;
 
 import com.release.anno.Action;
 import com.release.common.BaseType;
-import com.release.handler.AbstractBuilder;
 
 /**
  * The Class ReleaseProxy.

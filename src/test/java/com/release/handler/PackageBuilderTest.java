@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 
 
@@ -37,6 +38,14 @@ public class PackageBuilderTest {
 			String appendPath = installPath.replaceFirst("NCID", "NCID-UI");
 			System.out.println(appendPath);
 		}
+	}
 
+	@Test
+	public void getFileExtention() {
+		String path = "c:\\test\test.java";
+		assertThat("java", is(FilenameUtils.getExtension(path)));
+
+		String fileName = "test.java";
+		assertThat("java", is(FilenameUtils.getExtension(fileName)));
 	}
 }

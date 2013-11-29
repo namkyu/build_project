@@ -19,7 +19,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.release.handler.BufferedReaderCallback;
+import com.release.core.BufferedReaderCallback;
 
 /**
  * The Class FileUtil.
@@ -81,7 +81,10 @@ public class FileUtil {
 			br = new BufferedReader(new FileReader(readFile));
 			String readLine = null;
 			while ((readLine = br.readLine()) != null) {
-				fileList.add(callback.doSomethingWithReader(readLine));
+				String filePath = callback.doSomethingWithReader(readLine);
+				if (filePath != null) {
+					fileList.add(filePath);
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -5,6 +5,7 @@
  */
 package com.release.handler;
 
+import com.release.core.AbstractBuilder;
 import com.release.util.Conf;
 import com.release.util.ftp.FTPHandler;
 import com.release.util.ftp.FTPType;

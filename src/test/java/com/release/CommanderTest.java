@@ -6,7 +6,6 @@
 package com.release;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.release.core.BuildHandler;
@@ -24,23 +23,29 @@ public class CommanderTest {
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void packageTest() {
-		String[] args = {"c=package", "p=E:/test/build/R001"};
+		String[] args = {"c=package", "p=R001", "m=test"};
 		new BuildHandler(args).execute();
 	}
 
 	@Test
 //	@Ignore
 	public void installTest() {
-		String[] args = {"c=install", "p=C:/Users/nklee/Downloads/R001"};
+		String[] args = {"c=install", "p=R001"};
 		new BuildHandler(args).execute();
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void rollTest() {
-		String[] args = {"c=rollback", "p=E:/test/build/R001"};
+		String[] args = {"c=rollback", "p=R001"};
+		new BuildHandler(args).execute();
+	}
+
+	@Test
+	public void encryptPassword() {
+		String[] args = {"c=encrypt", "pw=test1111"};
 		new BuildHandler(args).execute();
 	}
 }

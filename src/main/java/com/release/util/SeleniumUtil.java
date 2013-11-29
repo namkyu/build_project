@@ -30,11 +30,13 @@ public class SeleniumUtil {
 	 * @param password
 	 */
 	public SeleniumUtil(String zipFileName, String uploadTargetNetwork) {
+		CipherAES cipherAES = new CipherAES();
 		System.setProperty("webdriver.chrome.driver", Conf.getValue("selenium.driver.path"));
+
 		this.baseUrl = Conf.getValue("selenium.webhard.url");
 		this.loginPath = Conf.getValue("selenium.webhard.login.path");
 		this.userId = Conf.getValue("selenium.webhard.login.userId");
-		this.password = Conf.getValue("selenium.webhard.login.password");
+		this.password = cipherAES.decrypt(Conf.getValue("selenium.webhard.login.password"));
 		this.uploadDirectory = Conf.getValue("selenium.webhard.upload.directory");
 		this.zipFileName = zipFileName;
 		this.targetNetwork = uploadTargetNetwork;

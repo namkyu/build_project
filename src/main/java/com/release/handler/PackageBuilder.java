@@ -11,8 +11,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.release.core.AbstractBuilder;
+import com.release.core.BufferedReaderCallback;
 import com.release.util.Conf;
 import com.release.util.FileUtil;
 import com.release.util.SeleniumUtil;
@@ -77,7 +80,7 @@ public class PackageBuilder extends AbstractBuilder {
 		List<String> csvInstallFilePathList = new ArrayList<String>();
 
 		for (String packageFilePath : packageFilePathList) {
-			String packageFileName = getFileName(packageFilePath);
+			String packageFileName = new File(packageFilePath).getName();
 			String destinationFilePath = getDestinationFilePath(fileNameList, packageFileName, packageDir);
 
 			// 적용되는 파일의 소스들을 source 디렉토리에 copy
@@ -140,7 +143,6 @@ public class PackageBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void error() {
-
 	}
 
 	/**
@@ -174,7 +176,24 @@ public class PackageBuilder extends AbstractBuilder {
 		BufferedReaderCallback callback = new BufferedReaderCallback() {
 			public String doSomethingWithReader(String line) {
 				String cutPath = replaceDeleteTxtToEmpty(line, Conf.getValue("history.path.delete.text"));
-				return Conf.getValue("local.workspace") + cutPath;
+				String path = Conf.getValue("local.workspace") + cutPath;
+
+				// 디렉토리는 적용 항목에서 제외
+				boolean isDirectory = new File(path).isDirectory();
+				if (isDirectory) {
+					return null;
+				}
+
+				// 특정 확장자는 적용 항목에서 제외
+				String[] excludeFileExtensionArr = Conf.getValue("exclude.file.extension.list").split(",");
+				for (String excludeFileExtension : excludeFileExtensionArr) {
+					String fileExtension = FilenameUtils.getExtension(path);
+					if (excludeFileExtension.equals(fileExtension)) {
+						return null;
+					}
+				}
+
+				return path;
 			}
 		};
 		return FileUtil.readFile(packageFile, callback);
@@ -224,6 +243,10 @@ public class PackageBuilder extends AbstractBuilder {
 		SeleniumUtil seleniumUtil = new SeleniumUtil(zip, uploadTargetNetwork);
 		seleniumUtil.loadBrowserToUpload();
 		seleniumUtil.stop();
+
+		if (data.isTest() == false) {
+			new File(zip).delete(); // zip 파일 삭제
+		}
 	}
 
 	/**

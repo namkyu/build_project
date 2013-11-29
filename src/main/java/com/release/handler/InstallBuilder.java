@@ -11,7 +11,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.release.core.AbstractBuilder;
+import com.release.core.BufferedReaderCallback;
 import com.release.util.Conf;
+import com.release.util.DateTimeUtil;
 import com.release.util.FileUtil;
 import com.release.util.SeleniumUtil;
 import com.release.util.ZipUtil;
@@ -58,7 +61,7 @@ public class InstallBuilder extends AbstractBuilder {
 		System.out.println("#########################################################");
 
 		// 백업 소스를 저장할 디렉토리 생성
-		String backupDir = makePath(BACKUP_DIRECTORY, data.getReleaseNum());
+		String backupDir = makePath(BACKUP_DIRECTORY + DateTimeUtil.getNowSimpleDateFormat("yyyyMMddHHmmss"), data.getReleaseNum());
 		makeDir(backupDir);
 
 		// cvs형식의 인스톨 파일 리스트 추출
@@ -73,7 +76,7 @@ public class InstallBuilder extends AbstractBuilder {
 
 		for (String cvsInstallFilePath : csvInstallFilePathList) {
 			String installFilePath = cvsInstallFilePath.split(SEPARATOR)[0];
-			String installFileName = getFileName(installFilePath);
+			String installFileName = new File(installFilePath).getName();
 			String backupFilePath = getDestinationFilePath(fileNameList, installFileName, backupDir);
 
 			boolean existFile = new File(installFilePath).isFile();
@@ -129,7 +132,7 @@ public class InstallBuilder extends AbstractBuilder {
 			String installFilePath = csvInstallFile.split(SEPARATOR)[0];
 			String sourceFilePath = csvInstallFile.split(SEPARATOR)[1];
 
-			String destDir = getDirPath(installFilePath);
+			String destDir = new File(installFilePath).getParent();
 			makeDir(destDir); // 적용할 소스 디렉토리 생성
 
 			System.out.println("##process##(install file copy) installFilePath=" + installFilePath + ", sourceFilePath=" + sourceFilePath);
@@ -145,11 +148,10 @@ public class InstallBuilder extends AbstractBuilder {
 	 */
 	@Override
 	protected void postHandle() {
-		new File(ROLLBACK_FILE_NAME).delete();
+		String rollbackFile = makePath(ROLLBACK_FILE_NAME, data.getReleaseNum());
+		new File(rollbackFile).delete();
 
-		// 소스 적용 완료 후 rollback 파일 생성
 		for (String csvRollbackFilePath : data.getCsvRollbackFilePathList()) {
-			String rollbackFile = makePath(ROLLBACK_FILE_NAME, data.getReleaseNum());
 			FileUtil.writeMsg(csvRollbackFilePath, rollbackFile);
 		}
 	}
