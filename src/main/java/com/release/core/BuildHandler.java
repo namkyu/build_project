@@ -5,9 +5,9 @@
  */
 package com.release.core;
 
-import java.util.Properties;
+import static org.apache.commons.lang.StringUtils.*;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.Properties;
 
 import com.release.common.ReleaseType;
 import com.release.vo.DataVO;
@@ -26,14 +26,11 @@ public class BuildHandler {
 		Properties properties = parseConfigParams(args);
 
 		dataVO = new DataVO();
-		dataVO.setType(ReleaseType.valueOf(properties.getProperty("c").toUpperCase()));
-		dataVO.setReleaseNum(properties.getProperty("p"));
+		dataVO.setType(ReleaseType.valueOf(upperCase(properties.getProperty("c"))));
 		dataVO.setPassword(properties.getProperty("pw"));
-
-		String mode = properties.getProperty("m");
-		if (mode != null && "test".equalsIgnoreCase(mode)) {
-			dataVO.setTest(true);
-		}
+		dataVO.setReleaseNum(upperCase(properties.getProperty("p")));
+		dataVO.setTest(upperCase(properties.getProperty("test")));
+		dataVO.setReleaseAll(upperCase(properties.getProperty("ra")));
 	}
 
 	/**
@@ -58,7 +55,7 @@ public class BuildHandler {
 	public Properties parseConfigParams(String[] args) {
 		Properties props = new Properties();
 		for (String pair : args) {
-			String[] keyAndValue = StringUtils.split(pair, '=');
+			String[] keyAndValue = split(pair, '=');
 			props.put(keyAndValue[0], keyAndValue[1]);
 		}
 		return props;

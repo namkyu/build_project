@@ -25,7 +25,7 @@ public class CommanderTest {
 	@Test
 //	@Ignore
 	public void packageTest() {
-		String[] args = {"c=package", "p=R001", "m=test"};
+		String[] args = {"c=package", "p=R001", "test=Y", "ra=Y"};
 		new BuildHandler(args).execute();
 	}
 

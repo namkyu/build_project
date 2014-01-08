@@ -27,7 +27,7 @@ public class TomcatRun {
 	 * @throws LifecycleException
 	 */
 	public static void main(String[] args) throws ServletException, LifecycleException {
-		String webappDirLocation = "src/main/web/";
+		String webappDirLocation = "web";
 		Tomcat tomcat = new Tomcat();
 		tomcat.setPort(10000);
 

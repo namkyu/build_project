@@ -23,12 +23,12 @@ public class DataVO {
 	/** FTP 업로드할 tar */
 	private String tarFileName;
 
+	private String password;
 	/** revisionNum */
 	private int revisionNum;
-
-	private boolean isTest;
-
-	private String password;
+	private String test;
+	/** remote workspace에 등록되어 있는 디렉토리에 모두 배포할지 여부 */
+	private String releaseAll;
 
 	/** package 파일 리스트 */
 	private List<String> packageFilePathList;
@@ -114,20 +114,6 @@ public class DataVO {
 	}
 
 	/**
-	 * @return the isTest
-	 */
-	public boolean isTest() {
-		return isTest;
-	}
-
-	/**
-	 * @param isTest the isTest to set
-	 */
-	public void setTest(boolean isTest) {
-		this.isTest = isTest;
-	}
-
-	/**
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -142,6 +128,34 @@ public class DataVO {
 	}
 
 	/**
+	 * @return the test
+	 */
+	public String getTest() {
+		return test;
+	}
+
+	/**
+	 * @param test the test to set
+	 */
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	/**
+	 * @return the releaseAll
+	 */
+	public String getReleaseAll() {
+		return releaseAll;
+	}
+
+	/**
+	 * @param releaseAll the releaseAll to set
+	 */
+	public void setReleaseAll(String releaseAll) {
+		this.releaseAll = releaseAll;
+	}
+
+	/**
 	 * <pre>
 	 * toString
 	 *
@@ -150,8 +164,8 @@ public class DataVO {
 	 */
 	@Override
 	public String toString() {
-		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", revisionNum=" + revisionNum + ", isTest="
-				+ isTest + ", packageFilePathList=" + packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList
-				+ ", csvRollbackFilePathList=" + csvRollbackFilePathList + "]";
+		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", password=" + password + ", revisionNum="
+				+ revisionNum + ", test=" + test + ", releaseAll=" + releaseAll + ", packageFilePathList=" + packageFilePathList
+				+ ", csvInstallFilePathList=" + csvInstallFilePathList + ", csvRollbackFilePathList=" + csvRollbackFilePathList + "]";
 	}
 }

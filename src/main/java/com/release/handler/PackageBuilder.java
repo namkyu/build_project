@@ -125,14 +125,30 @@ public class PackageBuilder extends AbstractBuilder {
 	protected void interceptorPostHandle() {
 		List<String> csvInstallFilePathList = data.getCsvInstallFilePathList();
 		List<String> addFilePathList = new ArrayList<String>();
+		List<String> addRemoteWorkspaceFilePathList = new ArrayList<String>();
 
+		// NCID-UI에 배포할 파일 추가
 		for (String installPath : csvInstallFilePathList) {
 			if (installPath.indexOf("NCID") > -1) {
 				String appendPath = installPath.replaceFirst("NCID", "NCID-UI");
 				addFilePathList.add(appendPath);
 			}
 		}
+
+		// remote workspace에 등록되어 있는 디렉토리에 모두 배포할지 여부
+		if ("Y".equals(data.getReleaseAll())) {
+			String[] remoteWorkspaces = Conf.getValue("remote.workspace").split(",");
+			for (int i = 1; i < remoteWorkspaces.length; i++) { // i 값을 1로 한 이유는 첫 번째 workspace 디렉토리의 path는 이미 생성되어 있기 때문
+				for (String installPath : csvInstallFilePathList) {
+					String appendPath = installPath.replaceFirst(remoteWorkspaces[0], remoteWorkspaces[i]);
+					addRemoteWorkspaceFilePathList.add(appendPath);
+				}
+			}
+		}
+
+		// add path
 		csvInstallFilePathList.addAll(addFilePathList);
+		csvInstallFilePathList.addAll(addRemoteWorkspaceFilePathList);
 	}
 
 	/**
@@ -226,7 +242,8 @@ public class PackageBuilder extends AbstractBuilder {
 	private String replacePath(String packageFilePath) {
 		String removeWorkspace = replaceDeleteTxtToEmpty(packageFilePath, Conf.getValue("local.workspace"));
 		String resultPath = replaceDeleteTxtToEmpty(removeWorkspace, Conf.getValue("local.file.path.delete.txt"));
-		return Conf.getValue("remote.workspace") + resultPath;
+		String[] remoteWorkspaces = Conf.getValue("remote.workspace").split(",");
+		return remoteWorkspaces[0] + resultPath;
 	}
 
 
@@ -244,7 +261,7 @@ public class PackageBuilder extends AbstractBuilder {
 		seleniumUtil.loadBrowserToUpload();
 		seleniumUtil.stop();
 
-		if (data.isTest() == false) {
+		if ("Y".equals(data.getTest()) == false) {
 			new File(zip).delete(); // zip 파일 삭제
 		}
 	}

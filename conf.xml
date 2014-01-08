@@ -13,8 +13,56 @@
 	<entry key="svn.id"></entry>
 	<entry key="svn.password"></entry>
 
-	<entry key="local.workspace">D:/workspace/project_test</entry>
-	<entry key="remote.workspace">E:/test/build/remoteDir</entry>
-	<entry key="history.path.delete.text">/NShop2011,/trunk</entry> <!-- svn history에서 복사해온 path에서 필요없는 문자열 삭제 -->
-	<entry key="local.file.path.delete.txt">/WebContent</entry> <!-- install.txt 파일 생성 시 local path에서 삭제해야 할 문자열 지정  -->
+	<!--
+		===============================================================================================
+		적용할 소스의 워크스페이스를 지정하면 된다.
+		워크스페이스 마지막에 / 를 추가해 줘야 함.
+		ex) E:/test/build/local/
+		===============================================================================================
+	-->
+	<entry key="local.workspace">E:/test/build/local/</entry>
+
+	<!--
+		===============================================================================================
+		배포되는 워크스페이스 경로를 지정하면 된다.
+		워크스페이스 마지막에 / 를 꼭 추가해 줘야 함.
+		ex) E:/test/build/remote/
+		===============================================================================================
+	-->
+	<entry key="remote.workspace">E:/test/build/remote/,E:/test/build/remote_LIVE/</entry>
+
+	<!--
+		===============================================================================================
+		svn history에서 복사해온 path의 필요없는 문자열 삭제
+		===============================================================================================
+	-->
+	<entry key="history.path.delete.text">/NShop2011,/trunk</entry>
+
+	<!--
+		===============================================================================================
+		install.txt 파일 생성 시 local path에서
+		삭제해야 할 문자열 지정
+		===============================================================================================
+	-->
+	<entry key="local.file.path.delete.txt">/WebContent</entry>
+
+
+	<!--
+		===============================================================================================
+		특정 확장자 제외 리스트 (콤마로 구분)
+		ex) .java,.js
+		===============================================================================================
+	-->
+	<entry key="exclude.file.extension.list">java,dll</entry>
+
+	<entry key="selenium.driver.path">C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe</entry>
+	<entry key="selenium.webhard.url">http://op.ncsoft.web</entry>
+	<entry key="selenium.webhard.login.path">/Login.do</entry>
+	<entry key="selenium.webhard.login.userId">nklee</entry>
+	<entry key="selenium.webhard.login.password">ef4dcd91734c64aebd037841ee5897f6</entry>
+	<entry key="selenium.webhard.upload.target.network">login_url2</entry>
+	<entry key="selenium.webhard.download.target.network">login_url2</entry>
+	<entry key="selenium.webhard.upload.directory">D:/workspace/project_test/build_project/</entry>
+
+
 </properties>
