@@ -63,10 +63,6 @@ public class Commander {
 		println(StringUtils.EMPTY);
 	}
 
-	private void encryptPassword(String password) {
-
-	}
-
 	/**
 	 * <pre>
 	 * println
