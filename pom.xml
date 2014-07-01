@@ -8,7 +8,7 @@
 	<repositories>
 		<repository>
 			<id>releases</id>
-			<url>http://kyuwoo82.com:8081/nexus/content/repositories/releases</url>
+			<url>http://lnk1982.cafe24.com:8081/nexus/content/repositories/releases</url>
 		</repository>
 	</repositories>
 
