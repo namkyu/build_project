@@ -24,16 +24,16 @@ clean package -Dmaven.test.skip=true
 + R001.tar.gz 파일을 배포하고자 하는 서버에 업로드 한 후 아래 Run을 참고하여 INSTALL을 진행하면 기존 파일은 백업을 한 후 배포가 진행된다. (파일 copy 작업만 이뤄지며 서버 재시작은 하지 않는다.)
 
 ## Command option
-**_PACKAGE_** : 적용할 소스 패키징
-**_INSTALL_** : 소스 적용
-**_ROLLBACK_** : 소스 원복
-**_PUTALL_** : FTP file upload
+**_PACKAGE_** : 적용할 소스 패키징  
+**_INSTALL_** : 소스 적용  
+**_ROLLBACK_** : 소스 원복  
+**_PUTALL_** : FTP file upload  
 
 ## Run
 **java -jar build_project.jar [명령옵션] [패키지번호]**
-> PACKAGE example : java -jar build_project.jar PACKAGE R001
-> INSTALL example : java -jar build_project.jar INSTALL R001
-> ROLLBACK example : java -jar build_project.jar ROLLBACK R001
+> PACKAGE example : java -jar build_project.jar PACKAGE R001  
+> INSTALL example : java -jar build_project.jar INSTALL R001  
+> ROLLBACK example : java -jar build_project.jar ROLLBACK R001  
 
 **java -jar build_project.jar [명령옵션] [패키지번호] [업로드파일명]**
 > PUTALL example : java -jar build_project.jar PUTALL R001 R001.tar.gz
