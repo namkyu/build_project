@@ -2,10 +2,14 @@
 파일 단위 배포 project
 상용 서버에 파일 단위로 배포를 할 수 있게 소스를 package, install, rollback 해주는 유틸리티 프로그램 (서버 재 시작 없이 오로지 파일만 배포하는 유틸)
 
+
+
 ### jar 파일 생성 방법
 프로젝트를 clone 받은 후 다음의 goal을 입력 후 메이븐 빌드한다.
 clean package -Dmaven.test.skip=true
 빌드가 완료되면 deploy 폴더에 build_project.jar 파일이 생성됨.
+
+
 
 ### 사용방법
 + 생성된 build_project.jar 파일의 동일한 경로에 R001 폴더를 생성한다. (폴더의 이름은 아무거나 상관 없음)
