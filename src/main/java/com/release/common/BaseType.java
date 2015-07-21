@@ -1,13 +1,12 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.common;
 
 
 /**
- * The Class BaseType.
+ * @FileName : BaseType.java
+ * @Project : TEST_PROJECT
+ * @Date : 2012. 1. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class BaseType {
 
@@ -17,13 +16,11 @@ public class BaseType {
 	public static String SEPARATOR = ",";
 	/** 인코딩 */
 	public static String CHARACTER_SET = "UTF-8";
-	/** zip file suffix */
-	public static final String ZIP_FILE_SUFFIX = ".zip";
 
 	/** 적용 소스 디렉토리 */
 	public static String SOURCE_DIRECTORY = "source";
 	/** 백업 소스 디렉토리 */
-	public static String BACKUP_DIRECTORY = "backup_";
+	public static String BACKUP_DIRECTORY = "backup";
 	/** 중복 파일 디렉토리 prefix */
 	public static String DUPL_DIRECTORY_PREFIX = "/dupl_";
 

@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.core;
 
 import java.io.IOException;
@@ -12,7 +7,11 @@ import org.junit.Test;
 
 
 /**
- * The Class ReleaseProxyTest.
+ * @FileName : ReleaseProxyTest.java
+ * @Project : build_project
+ * @Date : 2013. 3. 18.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class ReleaseProxyTest {
 

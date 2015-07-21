@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.vo;
 
 import java.util.List;
@@ -10,7 +5,11 @@ import java.util.List;
 import com.release.common.ReleaseType;
 
 /**
- * The Class DataVO.
+ * @FileName : DataVO.java
+ * @Project : TEST_PROJECT
+ * @Date : 2012. 1. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class DataVO {
 
@@ -22,13 +21,6 @@ public class DataVO {
 
 	/** FTP 업로드할 tar */
 	private String tarFileName;
-
-	private String password;
-	/** revisionNum */
-	private int revisionNum;
-	private String test;
-	/** remote workspace에 등록되어 있는 디렉토리에 모두 배포할지 여부 */
-	private String releaseAll;
 
 	/** package 파일 리스트 */
 	private List<String> packageFilePathList;
@@ -100,62 +92,6 @@ public class DataVO {
 	}
 
 	/**
-	 * @return the revisionNum
-	 */
-	public int getRevisionNum() {
-		return revisionNum;
-	}
-
-	/**
-	 * @param revisionNum the revisionNum to set
-	 */
-	public void setRevisionNum(int revisionNum) {
-		this.revisionNum = revisionNum;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
-	 * @return the test
-	 */
-	public String getTest() {
-		return test;
-	}
-
-	/**
-	 * @param test the test to set
-	 */
-	public void setTest(String test) {
-		this.test = test;
-	}
-
-	/**
-	 * @return the releaseAll
-	 */
-	public String getReleaseAll() {
-		return releaseAll;
-	}
-
-	/**
-	 * @param releaseAll the releaseAll to set
-	 */
-	public void setReleaseAll(String releaseAll) {
-		this.releaseAll = releaseAll;
-	}
-
-	/**
 	 * <pre>
 	 * toString
 	 *
@@ -164,8 +100,8 @@ public class DataVO {
 	 */
 	@Override
 	public String toString() {
-		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", password=" + password + ", revisionNum="
-				+ revisionNum + ", test=" + test + ", releaseAll=" + releaseAll + ", packageFilePathList=" + packageFilePathList
-				+ ", csvInstallFilePathList=" + csvInstallFilePathList + ", csvRollbackFilePathList=" + csvRollbackFilePathList + "]";
+		return "DataVO [type=" + type + ", releaseNum=" + releaseNum + ", tarFileName=" + tarFileName + ", packageFilePathList="
+				+ packageFilePathList + ", csvInstallFilePathList=" + csvInstallFilePathList + ", csvRollbackFilePathList=" + csvRollbackFilePathList
+				+ "]";
 	}
 }

@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.util;
 
 import static com.release.common.BaseType.*;
@@ -19,10 +14,12 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.release.core.BufferedReaderCallback;
-
 /**
- * The Class FileUtil.
+ * @FileName : FileUtil.java
+ * @Project : TEST_PROJECT
+ * @Date : 2012. 1. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class FileUtil {
 
@@ -74,17 +71,14 @@ public class FileUtil {
      * @param readFile
      * @return
      */
-    public static List<String> readFile(String readFile, BufferedReaderCallback callback) {
+    public static List<String> readFile(String readFile) {
 		BufferedReader br = null;
 		List<String> fileList = new ArrayList<String>();
 		try {
 			br = new BufferedReader(new FileReader(readFile));
 			String readLine = null;
 			while ((readLine = br.readLine()) != null) {
-				String filePath = callback.doSomethingWithReader(readLine);
-				if (filePath != null) {
-					fileList.add(filePath);
-				}
+				fileList.add(readLine);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -1,11 +1,5 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.handler;
 
-import com.release.core.AbstractBuilder;
 import com.release.util.Conf;
 import com.release.util.ftp.FTPHandler;
 import com.release.util.ftp.FTPType;
@@ -13,7 +7,11 @@ import com.release.util.ftp.FTPVO;
 import com.release.vo.DataVO;
 
 /**
- * The Class FtpPutBuilder.
+ * @FileName : FTPBuilder.java
+ * @Project : build_project
+ * @Date : 2013. 3. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class FtpPutBuilder extends AbstractBuilder {
 
@@ -25,10 +23,12 @@ public class FtpPutBuilder extends AbstractBuilder {
 	 * preHandle
 	 *
 	 * <pre>
+	 * @param data
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle() {
+	protected boolean preHandle(DataVO data) {
+		this.data = data;
 		return true;
 	}
 
@@ -73,18 +73,6 @@ public class FtpPutBuilder extends AbstractBuilder {
 	@Override
 	protected void error() {
 
-	}
-
-	/**
-	 * <pre>
-	 * valid
-	 *
-	 * <pre>
-	 * @param dataVO
-	 */
-	@Override
-	protected void valid(DataVO dataVO) {
-		this.data = dataVO;
 	}
 
 

@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.util.ftp;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -12,7 +7,6 @@ import java.io.IOException;
 import java.net.SocketException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.oroinc.net.ftp.FTPClient;
@@ -20,7 +14,11 @@ import com.release.util.Conf;
 
 
 /**
- * The Class FTPUtilTest.
+ * @FileName : FTPUtilTest.java
+ * @Project : build_project
+ * @Date : 2013. 3. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class FTPUtilTest {
 
@@ -32,7 +30,6 @@ public class FTPUtilTest {
 	}
 
 	@Test
-	@Ignore
 	public void ftpLogin() throws SocketException, IOException {
 		Conf.init();
 		client.connect("localhost", 21);

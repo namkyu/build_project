@@ -1,23 +1,19 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.handler;
 
 import static com.release.common.BaseType.*;
 
-import java.io.File;
 import java.util.List;
 
-import com.release.core.AbstractBuilder;
-import com.release.core.BufferedReaderCallback;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
 
 /**
- * The Class RollbackBuilder.
+ * @FileName : RollbackBuilder.java
+ * @Project : TEST_PROJECT
+ * @Date : 2012. 1. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class RollbackBuilder extends AbstractBuilder {
 
@@ -29,13 +25,16 @@ public class RollbackBuilder extends AbstractBuilder {
 	 * preHandle
 	 *
 	 * <pre>
+	 * @param dataVO
 	 * @return
 	 */
 	@Override
-	protected boolean preHandle() {
+	protected boolean preHandle(DataVO dataVO) {
 		System.out.println("#########################################################");
 		System.out.println("## ROLLBACK");
 		System.out.println("#########################################################");
+
+		this.data = dataVO;
 		return true;
 	}
 
@@ -48,36 +47,18 @@ public class RollbackBuilder extends AbstractBuilder {
 	@Override
 	protected void process() {
 		String rollbackFile = makePath(ROLLBACK_FILE_NAME, data.getReleaseNum());
-		List<String> csvRollbackFilePathList = makePackageFilePathList(rollbackFile);
+		List<String> csvRollbackFilePathList = FileUtil.readFile(rollbackFile);
 
 		for (String csvRollbackFilePath : csvRollbackFilePathList) {
 			String rollbaFilePath = csvRollbackFilePath.split(SEPARATOR)[0];
 			String backupFilePath = csvRollbackFilePath.split(SEPARATOR)[1];
 
-			String destDir = new File(rollbaFilePath).getParent();
+			String destDir = getDirPath(rollbaFilePath);
 			makeDir(destDir);
 
 			System.out.println("##process##(rollback file copy) backupFilePath=" + backupFilePath + ", rollbaFilePath=" + rollbaFilePath);
 			FileUtil.nioCopy(backupFilePath, rollbaFilePath);
 		}
-	}
-
-	/**
-	 * <pre>
-	 * makePackageFilePathList
-	 *
-	 * <pre>
-	 * @param packageFile
-	 * @return
-	 */
-	private List<String> makePackageFilePathList(String packageFile) {
-		BufferedReaderCallback callback = new BufferedReaderCallback() {
-			public String doSomethingWithReader(String line) {
-				return line;
-			}
-		};
-
-		return FileUtil.readFile(packageFile, callback);
 	}
 
 	/**
@@ -102,15 +83,4 @@ public class RollbackBuilder extends AbstractBuilder {
 
 	}
 
-	/**
-	 * <pre>
-	 * valid
-	 *
-	 * <pre>
-	 * @param dataVO
-	 */
-	@Override
-	protected void valid(DataVO dataVO) {
-		this.data = dataVO;
-	}
 }

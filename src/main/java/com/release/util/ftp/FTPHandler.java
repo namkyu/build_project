@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.util.ftp;
 
 import java.io.File;
@@ -12,7 +7,11 @@ import java.util.regex.Pattern;
 import com.release.util.Conf;
 
 /**
- * The Class FTPHandler.
+ * @FileName : FTPHandler.java
+ * @Project : sample_project
+ * @Date : 2012. 4. 16.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class FTPHandler {
 

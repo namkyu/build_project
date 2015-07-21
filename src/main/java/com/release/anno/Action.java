@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.anno;
 
 import java.lang.annotation.ElementType;
@@ -11,7 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The Interface Action.
+ * @FileName : Action.java
+ * @Project : build_project
+ * @Date : 2012. 3. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

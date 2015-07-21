@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.core;
 
 import java.io.File;
@@ -14,11 +9,16 @@ import java.util.List;
 
 import com.release.anno.Action;
 import com.release.common.BaseType;
+import com.release.handler.AbstractBuilder;
 
 /**
- * The Class ReleaseProxy.
+ * @FileName : ReleaseProxy.java
+ * @Project : build_project
+ * @Date : 2012. 3. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
-//@Deprecated
+@Deprecated
 public class ReleaseProxy {
 
 	/**

@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.util;
 
 import java.io.FileInputStream;
@@ -11,7 +6,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * The Class Conf.
+ * @FileName : Conf.java
+ * @Project : build_project
+ * @Date : 2013. 3. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class Conf {
 
@@ -25,16 +24,11 @@ public class Conf {
 	 * <pre>
 	 * @throws IOException
 	 */
-	public static void init()  {
-		InputStream in = null;
-		try {
-			in = new FileInputStream(confFileName);
-			Conf conf = new Conf();
-			mPro = conf.loadProperties(in);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			new RuntimeException(ex);
-		}
+	public static void init() throws IOException {
+//		InputStream in = Conf.class.getClassLoader().getResourceAsStream(mPpUrl);
+		InputStream in = new FileInputStream(confFileName);
+		Conf conf = new Conf();
+		mPro = conf.loadProperties(in);
 	}
 
 	/**

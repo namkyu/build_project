@@ -1,36 +1,30 @@
-/*
- * Copyright (c) 2013 namkyu.
- * All right reserved.
- *
- */
 package com.release.core;
 
-import static org.apache.commons.lang.StringUtils.*;
-
-import java.util.Properties;
-
 import com.release.common.ReleaseType;
+import com.release.handler.AbstractBuilder;
 import com.release.vo.DataVO;
 
 /**
- * The Class BuildHandler.
+ * @FileName : BuildHandler.java
+ * @Project : TEST_PROJECT
+ * @Date : 2012. 1. 20.
+ * @작성자 : 이남규
+ * @프로그램설명 :
  */
 public class BuildHandler {
 
-	private DataVO dataVO;
+	/** data */
+	public DataVO data;
 
 	/**
-	 * @param args
+	 * @param command
+	 * @param releaseNum
 	 */
-	public BuildHandler(String[] args) {
-		Properties properties = parseConfigParams(args);
-
-		dataVO = new DataVO();
-		dataVO.setType(ReleaseType.valueOf(upperCase(properties.getProperty("c"))));
-		dataVO.setPassword(properties.getProperty("pw"));
-		dataVO.setReleaseNum(upperCase(properties.getProperty("p")));
-		dataVO.setTest(upperCase(properties.getProperty("test")));
-		dataVO.setReleaseAll(upperCase(properties.getProperty("ra")));
+	public BuildHandler(String command, String releaseNum, String tarFileName) {
+		data = new DataVO();
+		data.setType(ReleaseType.valueOf(command));
+		data.setReleaseNum(releaseNum);
+		data.setTarFileName(tarFileName);
 	}
 
 	/**
@@ -40,24 +34,7 @@ public class BuildHandler {
 	 * <pre>
 	 */
 	public void execute() {
-		AbstractBuilder abstractBuilder = ReleaseFactory.createInstance(dataVO.getType());
-		abstractBuilder.build(dataVO);
-	}
-
-	/**
-	 * <pre>
-	 * parseConfigParams
-	 *
-	 * <pre>
-	 * @param args
-	 * @return
-	 */
-	public Properties parseConfigParams(String[] args) {
-		Properties props = new Properties();
-		for (String pair : args) {
-			String[] keyAndValue = split(pair, '=');
-			props.put(keyAndValue[0], keyAndValue[1]);
-		}
-		return props;
+		AbstractBuilder abstractBuilder = ReleaseFactory.createInstance(data.getType());
+		abstractBuilder.build(data);
 	}
 }
