@@ -20,7 +20,8 @@ clean package -Dmaven.test.skip=true
 /home/nklee/was/wepApps/mySpringProject/resources/bootstrap/img/favicon.png
 /home/nklee/was/wepApps/mySpringProject/resources/bootstrap/img/glyphicons-halflings.png
 ```
-+ 여기까지 작업을 한 후 아래 Run을 참고하여 PACKAGE 를 실행하면 R001.tar.gz 파일이 생성된다.
++ 여기까지 작업을 한 후 아래 Run을 참고하여 PACKAGE 를 실행하면 R001 폴더로 위의 파일들을 복사한다.
++ R001 디렉토리를 R001.tar.gz 파일로 압축한다.
 + R001.tar.gz 파일을 배포하고자 하는 서버에 업로드 한 후 아래 Run을 참고하여 INSTALL을 진행하면 기존 파일은 백업을 한 후 배포가 진행된다. (파일 copy 작업만 이뤄지며 서버 재시작은 하지 않는다.)
 
 ## Command option
