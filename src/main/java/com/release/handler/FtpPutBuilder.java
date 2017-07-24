@@ -15,65 +15,67 @@ import com.release.vo.DataVO;
  */
 public class FtpPutBuilder extends AbstractBuilder {
 
-	/** vo */
-	private DataVO data;
+    /**
+     * vo
+     */
+    private DataVO data;
 
-	/**
-	 * <pre>
-	 * preHandle
-	 *
-	 * <pre>
-	 * @param data
-	 * @return
-	 */
-	@Override
-	protected boolean preHandle(DataVO data) {
-		this.data = data;
-		return true;
-	}
+    /**
+     * <pre>
+     * preHandle
+     *
+     * <pre>
+     * @param data
+     * @return
+     */
+    @Override
+    protected boolean preHandle(DataVO data) {
+        this.data = data;
+        return true;
+    }
 
-	/**
-	 * <pre>
-	 * process
-	 *
-	 * <pre>
-	 */
-	@Override
-	protected void process() {
-		FTPVO ftpvo = new FTPVO();
-		ftpvo.setUploadRemoteDirectory(Conf.getValue("ftp.remote.upload.directory"));
-		ftpvo.setUploadLocalDirectory(Conf.getValue("ftp.local.upload.directory"));
-		ftpvo.setUploadFileNameList(data.getTarFileName());
-		ftpvo.setType(FTPType.PUT);
+    /**
+     * <pre>
+     * process
+     *
+     * <pre>
+     */
+    @Override
+    protected void process() {
+        FTPVO ftpvo = new FTPVO();
+        ftpvo.setUploadRemoteDirectory(Conf.getValue("ftp.remote.upload.directory"));
+        ftpvo.setUploadLocalDirectory(Conf.getValue("ftp.local.upload.directory"));
+        ftpvo.setUploadFileNameList(data.getTarFileName());
+        ftpvo.setType(FTPType.PUT);
 
-		// 원격지 FTP 서버로 업로드 처리
-		String[] ftpServers = Conf.getValue("ftp.remote.ip.list").split(",");
-		for (String ftpServerIp : ftpServers) {
-			new FTPHandler(ftpServerIp).job(ftpvo);
-		}
-	}
+        // 원격지 FTP 서버로 업로드 처리
+        String[] ftpServers = Conf.getValue("ftp.remote.ip.list").split(",");
+        for (String ftpServerIp : ftpServers) {
+            new FTPHandler(ftpServerIp).job(ftpvo);
+        }
+    }
 
-	/**
-	 * <pre>
-	 * postHandle
-	 *
-	 * <pre>
-	 */
-	@Override
-	protected void postHandle() {
+    /**
+     * <pre>
+     * postHandle
+     *
+     * <pre>
+     */
+    @Override
+    protected void postHandle() {
 
-	}
+    }
 
-	/**
-	 * <pre>
-	 * error
-	 *
-	 * <pre>
-	 */
-	@Override
-	protected void error() {
+    /**
+     * <pre>
+     * error
+     *
+     * <pre>
+     */
+    @Override
+    protected void error() {
 
-	}
+    }
 
 
 }

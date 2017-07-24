@@ -1,22 +1,15 @@
 package com.release.util;
 
-import static com.release.common.BaseType.*;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.release.common.BaseType.CHARACTER_SET;
+
 /**
  * @FileName : FileUtil.java
- * @Project : TEST_PROJECT
+ * @Project : my_project_release
  * @Date : 2012. 1. 20.
  * @작성자 : 이남규
  * @프로그램설명 :
@@ -35,8 +28,8 @@ public class FileUtil {
         FileChannel inChannel = null;
         FileChannel outChannel = null;
         try {
-        	inChannel = new FileInputStream(new File(srcPath)).getChannel();
-        	outChannel = new FileOutputStream(new File(destPath)).getChannel();
+            inChannel = new FileInputStream(new File(srcPath)).getChannel();
+            outChannel = new FileOutputStream(new File(destPath)).getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,21 +40,21 @@ public class FileUtil {
 
     }
 
-	/**
-	 * <pre>
-	 * close
-	 *
-	 * <pre>
-	 * @param channel
-	 */
-	public static void close(FileChannel channel) {
-		try {
-			if (channel != null) {
-				channel.close();
-			}
-		} catch (IOException e) {
-		}
-	}
+    /**
+     * <pre>
+     * close
+     *
+     * <pre>
+     * @param channel
+     */
+    public static void close(FileChannel channel) {
+        try {
+            if (channel != null) {
+                channel.close();
+            }
+        } catch (IOException e) {
+        }
+    }
 
     /**
      * <pre>
@@ -72,25 +65,26 @@ public class FileUtil {
      * @return
      */
     public static List<String> readFile(String readFile) {
-		BufferedReader br = null;
-		List<String> fileList = new ArrayList<String>();
-		try {
-			br = new BufferedReader(new FileReader(readFile));
-			String readLine = null;
-			while ((readLine = br.readLine()) != null) {
-				fileList.add(readLine);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {}
-			}
-		}
-		return fileList;
-	}
+        BufferedReader br = null;
+        List<String> fileList = new ArrayList<String>();
+        try {
+            br = new BufferedReader(new FileReader(readFile));
+            String readLine = null;
+            while ((readLine = br.readLine()) != null) {
+                fileList.add(readLine);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return fileList;
+    }
 
     /**
      * <pre>
@@ -101,20 +95,21 @@ public class FileUtil {
      * @param path
      */
     public static void writeMsg(String msg, String path) {
-		BufferedWriter bf = null;
-		try {
-			bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path), true), CHARACTER_SET));
-			bf.write(msg);
-			bf.newLine();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			throw new RuntimeException(ex);
-		} finally {
-			if (bf != null) {
-				try {
-					bf.close();
-				} catch (IOException ex) {}
-			}
-		}
-	}
+        BufferedWriter bf = null;
+        try {
+            bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(path), true), CHARACTER_SET));
+            bf.write(msg);
+            bf.newLine();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        } finally {
+            if (bf != null) {
+                try {
+                    bf.close();
+                } catch (IOException ex) {
+                }
+            }
+        }
+    }
 }
