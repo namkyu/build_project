@@ -1,37 +1,36 @@
 package com.release.common;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import java.util.Arrays;
-
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 
 /**
  * @FileName : ReleaseTypeTest.java
- * @Project : build_project
+ * @Project : my_project_release
  * @Date : 2013. 3. 20.
  * @작성자 : 이남규
  * @프로그램설명 :
  */
 public class ReleaseTypeTest {
 
-	@Test
-	public void enumValuesTest() {
-		ReleaseType[] types = ReleaseType.values();
-		System.out.println(Arrays.toString(types));
-	}
+    @Test
+    public void enumValuesTest() {
+        ReleaseType[] types = ReleaseType.values();
+        assertThat(ReleaseType.PACKAGE, is(types[0]));
+        assertThat(ReleaseType.INSTALL, is(types[1]));
+    }
 
-	@Test
-	public void enumName() {
-		String name = ReleaseType.INSTALL.name();
-		assertThat("INSTALL", is(name));
-	}
+    @Test
+    public void enumName() {
+        String name = ReleaseType.INSTALL.name();
+        assertThat("INSTALL", is(name));
+    }
 
-	@Test
-	public void enumTest2() {
-		ReleaseType type = ReleaseType.valueOf("INSTALL");
-		assertThat(type, is(ReleaseType.INSTALL));
-	}
+    @Test
+    public void enum_valueOf_test() {
+        ReleaseType type = ReleaseType.valueOf("INSTALL");
+        assertThat(type, is(ReleaseType.INSTALL));
+    }
 }

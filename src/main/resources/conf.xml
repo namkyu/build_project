@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>conf</comment>
+    <entry key="ftp.remote.ip.list">localhost</entry>
+    <entry key="ftp.remote.port">21</entry>
+    <entry key="ftp.remote.user">test</entry>
+    <entry key="ftp.remote.password">1111</entry>
+    <entry key="ftp.remote.upload.directory">/remote/RELEASE</entry>
+    <entry key="ftp.local.upload.directory">E:\test\build\R001</entry>
+</properties>

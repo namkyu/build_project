@@ -1,5 +1,6 @@
 package com.release.handler;
 
+import com.release.anno.Action;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
@@ -16,6 +17,7 @@ import static com.release.common.BaseType.SEPARATOR;
  * @작성자 : 이남규
  * @프로그램설명 :
  */
+@Action(value = "ROLLBACK")
 public class RollbackBuilder extends AbstractBuilder {
 
     /**

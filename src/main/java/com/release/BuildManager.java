@@ -15,6 +15,8 @@ import org.apache.commons.lang.StringUtils;
  */
 public class BuildManager {
 
+    public static final int NEED_ARGS = 2;
+
     /**
      * <pre>
      * main
@@ -24,6 +26,11 @@ public class BuildManager {
      */
     public static void main(String[] args) {
         try {
+            if (args.length < NEED_ARGS) {
+                help();
+                return;
+            }
+
             // 실행 옵션
             String command = args[0].toUpperCase();
             if ("HELP".equals(command)) {
@@ -69,14 +76,14 @@ public class BuildManager {
         println("ROLLBACK : 소스 원복");
         println("PUTALL   : FTP file upload");
         println(StringUtils.EMPTY);
-        println("java -jar build_project.jar 명령옵션 패키지번호");
-        println(" - PACKAGE example : java -jar build_project.jar PACKAGE R001");
-        println(" - INSTALL example : java -jar build_project.jar INSTALL R001");
-        println(" - ROLLBACK example : java -jar build_project.jar ROLLBACK R001");
-        println("java -jar build_project.jar 명령옵션 패키지번호 업로드파일명");
-        println(" - PUTALL example : java -jar build_project.jar PUTALL R001 R001.tar.gz");
+        println("java -jar release_file.jar 명령옵션 패키지번호");
+        println(" - PACKAGE example : java -jar release_file.jar PACKAGE R001");
+        println(" - INSTALL example : java -jar release_file.jar INSTALL R001");
+        println(" - ROLLBACK example : java -jar release_file.jar ROLLBACK R001");
+        println("java -jar release_file.jar 명령옵션 패키지번호 업로드파일명");
+        println(" - PUTALL example : java -jar release_file.jar PUTALL R001 R001.tar.gz");
         println(StringUtils.EMPTY);
-        println("build_project.jar 파일이 있는 경로에 패키지번호 디렉토리가 존재해야 함");
+        println("release_file.jar 파일이 있는 경로에 패키지번호 디렉토리가 존재해야 함");
         println("패키지번호 디렉토리 안에는 적용할 소스 리스트가 기록되어 있는 package.txt 파일이 존재해야 함");
         println(StringUtils.EMPTY);
     }
@@ -92,6 +99,14 @@ public class BuildManager {
      */
     public void startProcess(String command, String releaseNum, String tarFileName) {
         new BuildHandler(command, releaseNum, tarFileName).execute();
+    }
+
+    /**
+     * @param command
+     * @param releaseNum
+     */
+    public void startProcess(String command, String releaseNum) {
+        new BuildHandler(command, releaseNum, null).execute();
     }
 
     /**

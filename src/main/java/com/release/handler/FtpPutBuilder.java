@@ -1,5 +1,6 @@
 package com.release.handler;
 
+import com.release.anno.Action;
 import com.release.util.Conf;
 import com.release.util.ftp.FTPHandler;
 import com.release.util.ftp.FTPType;
@@ -8,11 +9,12 @@ import com.release.vo.DataVO;
 
 /**
  * @FileName : FTPBuilder.java
- * @Project : build_project
+ * @Project : my_project_release
  * @Date : 2013. 3. 20.
  * @작성자 : 이남규
  * @프로그램설명 :
  */
+@Action(value = "PUTALL")
 public class FtpPutBuilder extends AbstractBuilder {
 
     /**

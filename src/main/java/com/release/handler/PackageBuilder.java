@@ -1,5 +1,6 @@
 package com.release.handler;
 
+import com.release.anno.Action;
 import com.release.util.FileUtil;
 import com.release.vo.DataVO;
 
@@ -17,6 +18,7 @@ import static com.release.common.BaseType.*;
  * @작성자 : 이남규
  * @프로그램설명 : 패키징
  */
+@Action(value = "PACKAGE")
 public class PackageBuilder extends AbstractBuilder {
 
     /**

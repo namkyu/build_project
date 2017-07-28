@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 /**
  * @FileName : FTPUtilTest.java
- * @Project : build_project
+ * @Project : my_project_release
  * @Date : 2013. 3. 20.
  * @작성자 : 이남규
  * @프로그램설명 :

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * @FileName : Action.java
- * @Project : build_project
+ * @Project : my_project_release
  * @Date : 2012. 3. 20.
  * @작성자 : 이남규
  * @프로그램설명 :
@@ -16,6 +16,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Action {
 
-	public String value() default "";
+    public String value() default "";
 
 }

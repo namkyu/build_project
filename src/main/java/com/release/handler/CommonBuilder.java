@@ -7,7 +7,7 @@ import static com.release.common.BaseType.DUPL_DIRECTORY_PREFIX;
 
 /**
  * @FileName : Common.java
- * @Project : build_project
+ * @Project : my_project_release
  * @Date : 2012. 5. 4.
  * @작성자 : 이남규
  * @프로그램설명 :
@@ -45,7 +45,7 @@ public class CommonBuilder {
         dir.setReadable(true);
         dir.setExecutable(true);
         dir.setWritable(true);
-        dir.mkdir();
+        dir.mkdirs();
     }
 
     /**
@@ -57,7 +57,7 @@ public class CommonBuilder {
      * @return
      */
     public String getFileName(String filePath) {
-        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+        String fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1);
         return fileName;
     }
 
@@ -70,7 +70,7 @@ public class CommonBuilder {
      * @return
      */
     public String getDirPath(String path) {
-        String dirPath = path.substring(0, path.lastIndexOf("/"));
+        String dirPath = path.substring(0, path.lastIndexOf(File.separator));
         return dirPath;
     }
 
